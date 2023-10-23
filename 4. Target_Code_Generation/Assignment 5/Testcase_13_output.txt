@@ -1,0 +1,62 @@
+Success: Parsing Done
++---------------------------------------+
++---------------Global Symbol Table---------------+
+Name	Type	Initial value	size	Offset	nested table
+printInt	INT->INT	0	0	0	null
+printStr	CHAR*->INT	0	0	0	null
+readInt	INT*->INT	0	0	0	null
+main	VOID->INT	0	0	0	main
++---------------Symbol Table of main---------------+
+Name	Type	Initial value	size	Offset	nested table
+a	INT	0	4	0	null
+b	INT	0	4	4	null
+e	INT*	0	4	8	null
+t0	CHAR	"\n        ######################################################\n        ##                                                  ##\n        ##         Print first 20 natural numbers           ##\n        ##                   (LOOP)                         ##\n        ##                                                  ##\n        ######################################################\n\n"	388	12	null
+t1	INT	0	4	400	null
+t2	INT	0	4	404	null
+t3	INT*	0	4	408	null
+t4	CHAR	"        "	8	412	null
+t5	INT	0	4	420	null
+t6	INT	0	4	424	null
+t7	INT	0	4	428	null
+t8	INT	0	4	432	null
+t9	INT	0	4	436	null
+t10	INT	0	4	440	null
+t11	CHAR	" "	1	444	null
+t12	INT	0	4	445	null
+t13	INT	0	4	449	null
+t14	INT	0	4	453	null
+t15	INT	0	4	457	null
+
+  0) main : 
+  1) t0 = "\n        ######################################################\n        ##                                                  ##\n        ##         Print first 20 natural numbers           ##\n        ##                   (LOOP)                         ##\n        ##                                                  ##\n        ######################################################\n\n"
+  2) param t0
+  3) t1 = call printStr, 1
+  4) t2 = 1
+  5) b = t2
+  6) t3 = &b
+  7) e = t3
+  8) t4 = "        "
+  9) param t4
+ 10) t5 = call printStr, 1
+ 11) t6 = 0
+ 12) a = t6
+ 13) t7 = 20
+ 14) if a < t7 goto 21
+ 15) goto 30
+ 16) goto 30
+ 17) t8 = 1
+ 18) t9 = a + t8
+ 19) a = t9
+ 20) goto 13
+ 21) param b
+ 22) t10 = call printInt, 1
+ 23) t11 = " "
+ 24) param t11
+ 25) t12 = call printStr, 1
+ 26) t13 = 1
+ 27) t14 = b + t13
+ 28) b = t14
+ 29) goto 17
+ 30) t15 = 0
+ 31) return t15

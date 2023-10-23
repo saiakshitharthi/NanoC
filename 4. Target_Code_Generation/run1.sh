@@ -1,0 +1,1 @@
+g++ A6_19_translator.cpp -o A6_19_translator

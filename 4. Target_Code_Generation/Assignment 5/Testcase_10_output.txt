@@ -1,0 +1,187 @@
+Success: Parsing Done
++---------------------------------------+
++---------------Global Symbol Table---------------+
+Name	Type	Initial value	size	Offset	nested table
+printInt	INT->INT	0	0	0	printInt
+readInt	INT*->INT	0	0	0	readInt
+printStr	CHAR*->INT	0	0	0	printStr
+arr	INT	0	40	0	null
+binarySearch	INT*INT*INT->INT	0	0	40	binarySearch
+main	VOID->INT	0	0	40	main
++---------------Symbol Table of printInt---------------+
+Name	Type	Initial value	size	Offset	nested table
+x	INT	0	4	0	null
+t0	INT	0	4	4	null
++---------------Symbol Table of readInt---------------+
+Name	Type	Initial value	size	Offset	nested table
+n	INT*	0	4	0	null
+t1	INT	0	4	4	null
++---------------Symbol Table of printStr---------------+
+Name	Type	Initial value	size	Offset	nested table
+s	CHAR*	0	1	0	null
+t2	INT	0	4	1	null
++---------------Symbol Table of binarySearch---------------+
+Name	Type	Initial value	size	Offset	nested table
+l	INT	0	4	0	null
+r	INT	0	4	4	null
+x	INT	0	4	8	null
+t3	INT	0	4	12	null
+t4	INT	0	4	16	null
+t5	INT	0	4	20	null
+t6	INT	0	4	24	null
+mid	INT	0	4	28	null
+t7	INT	0	4	32	null
+t8	INT	0	4	36	null
+t9	INT	0	4	40	null
+t10	INT	0	4	44	null
+t11	INT	0	4	48	null
+t12	INT	0	4	52	null
+t13	INT	0	4	56	null
+t14	INT	0	4	60	null
+t15	INT	0	4	64	null
+t16	INT	0	4	68	null
+t17	INT	0	4	72	null
+t18	INT	0	4	76	null
++---------------Symbol Table of main---------------+
+Name	Type	Initial value	size	Offset	nested table
+t19	INT	0	4	0	null
+n	INT	0	4	4	null
+t20	INT	0	4	8	null
+t21	INT	0	4	12	null
+t22	INT	0	4	16	null
+t23	INT	0	4	20	null
+t24	INT	0	4	24	null
+t25	INT	0	4	28	null
+t26	INT	0	4	32	null
+t27	INT	0	4	36	null
+t28	INT	0	4	40	null
+t29	INT	0	4	44	null
+t30	INT	0	4	48	null
+t31	INT	0	4	52	null
+t32	INT	0	4	56	null
+t33	INT	0	4	60	null
+t34	INT	0	4	64	null
+t35	INT	0	4	68	null
+t36	INT	0	4	72	null
+t37	INT	0	4	76	null
+t38	INT	0	4	80	null
+t39	INT	0	4	84	null
+t40	INT	0	4	88	null
+x	INT	0	4	92	null
+t41	INT	0	4	96	null
+t42	INT	0	4	100	null
+t43	INT	0	4	104	null
+t44	INT	0	4	108	null
+result	INT	0	4	112	null
+t45	INT	0	4	116	null
+t46	INT	0	4	120	null
+t47	CHAR	"Element is not present in array"	31	124	null
+t48	INT	0	4	155	null
+t49	CHAR	"Element is present at index "	28	159	null
+t50	INT	0	4	187	null
+t51	INT	0	4	191	null
+t52	INT	0	4	195	null
+
+  0) printInt : 
+  1) t0 = 0
+  2) return t0
+  3) readInt : 
+  4) t1 = 1
+  5) return t1
+  6) printStr : 
+  7) t2 = 2
+  8) return t2
+  9) binarySearch : 
+ 10) if r >= l goto 13
+ 11) goto 46
+ 12) goto 46
+ 13) t3 = r - l
+ 14) t4 = 2
+ 15) t5 = t3 / t4
+ 16) t6 = l + t5
+ 17) mid = t6
+ 18) t7 = mid
+ 19) t8 = arr[t7]
+ 20) if t8 == x goto 23
+ 21) goto 25
+ 22) goto 25
+ 23) return mid
+ 24) goto (null)
+ 25) t9 = mid
+ 26) t10 = arr[t9]
+ 27) if t10 > x goto 30
+ 28) goto 38
+ 29) goto 38
+ 30) t11 = 1
+ 31) t12 = mid - t11
+ 32) param l
+ 33) param t12
+ 34) param x
+ 35) t13 = call binarySearch, 3
+ 36) return t13
+ 37) goto (null)
+ 38) t14 = 1
+ 39) t15 = mid + t14
+ 40) param t15
+ 41) param r
+ 42) param x
+ 43) t16 = call binarySearch, 3
+ 44) return t16
+ 45) goto (null)
+ 46) t17 = 1
+ 47) t18 = - t17
+ 48) return t18
+ 49) main : 
+ 50) t19 = 5
+ 51) n = t19
+ 52) t20 = 0
+ 53) t21 = t20
+ 54) t22 = arr[t21]
+ 55) t23 = 2
+ 56) arr[t21] = t23
+ 57) t24 = 1
+ 58) t25 = t24
+ 59) t26 = arr[t25]
+ 60) t27 = 3
+ 61) arr[t25] = t27
+ 62) t28 = 2
+ 63) t29 = t28
+ 64) t30 = arr[t29]
+ 65) t31 = 4
+ 66) arr[t29] = t31
+ 67) t32 = 3
+ 68) t33 = t32
+ 69) t34 = arr[t33]
+ 70) t35 = 10
+ 71) arr[t33] = t35
+ 72) t36 = 4
+ 73) t37 = t36
+ 74) t38 = arr[t37]
+ 75) t39 = 40
+ 76) arr[t37] = t39
+ 77) t40 = 10
+ 78) x = t40
+ 79) t41 = 0
+ 80) t42 = 1
+ 81) t43 = n - t42
+ 82) param t41
+ 83) param t43
+ 84) param x
+ 85) t44 = call binarySearch, 3
+ 86) result = t44
+ 87) t45 = 1
+ 88) t46 = - t45
+ 89) if result == t46 goto 92
+ 90) goto 96
+ 91) goto 101
+ 92) t47 = "Element is not present in array"
+ 93) param t47
+ 94) t48 = call printStr, 1
+ 95) goto 101
+ 96) t49 = "Element is present at index "
+ 97) param t49
+ 98) t50 = call printStr, 1
+ 99) param result
+100) t51 = call printInt, 1
+101) t52 = 0
+102) return t52

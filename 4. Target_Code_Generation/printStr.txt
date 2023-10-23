@@ -1,0 +1,2 @@
+s	CHAR*	0	1	0	null	0
+t2	INT	0	4	1	null	0

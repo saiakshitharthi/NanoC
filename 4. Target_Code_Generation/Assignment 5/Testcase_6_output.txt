@@ -1,0 +1,148 @@
+Success: Parsing Done
++---------------------------------------+
++---------------Global Symbol Table---------------+
+Name	Type	Initial value	size	Offset	nested table
+printInt	INT->INT	0	0	0	printInt
+readInt	INT*->INT	0	0	0	readInt
+printStr	CHAR*->INT	0	0	0	printStr
+main	VOID->INT	0	0	0	main
++---------------Symbol Table of printInt---------------+
+Name	Type	Initial value	size	Offset	nested table
+x	INT	0	4	0	null
+t0	INT	0	4	4	null
++---------------Symbol Table of readInt---------------+
+Name	Type	Initial value	size	Offset	nested table
+n	INT*	0	4	0	null
+t1	INT	0	4	4	null
++---------------Symbol Table of printStr---------------+
+Name	Type	Initial value	size	Offset	nested table
+s	CHAR*	0	1	0	null
+t2	INT	0	4	1	null
++---------------Symbol Table of main---------------+
+Name	Type	Initial value	size	Offset	nested table
+n	INT	0	4	0	null
+a	INT	0	40	4	null
+m	INT	0	4	44	null
+i	INT	0	4	48	null
+t3	INT*	0	4	52	null
+t4	INT	0	4	56	null
+t5	INT	0	4	60	null
+t6	INT	0	4	64	null
+t7	INT	0	4	68	null
+t8	INT*	0	4	72	null
+t9	INT	0	4	76	null
+t10	INT	0	4	80	null
+t11	INT	0	4	84	null
+t12	INT	0	4	88	null
+t13	INT	0	4	92	null
+t14	INT	0	4	96	null
+t15	INT	0	4	100	null
+t16	INT	0	4	104	null
+t17	INT	0	4	108	null
+t18	INT	0	4	112	null
+t19	INT	0	4	116	null
+t20	INT	0	4	120	null
+t21	INT	0	4	124	null
+t22	CHAR	"Max of: "	8	128	null
+t23	INT	0	4	136	null
+t24	INT	0	4	140	null
+t25	INT	0	4	144	null
+t26	INT	0	4	148	null
+t27	INT	0	4	152	null
+t28	INT	0	4	156	null
+t29	INT	0	4	160	null
+t30	INT	0	4	164	null
+t31	CHAR	", "	2	168	null
+t32	INT	0	4	170	null
+t33	INT	0	4	174	null
+t34	INT	0	4	178	null
+t35	INT	0	4	182	null
+t36	CHAR	": = "	4	186	null
+t37	INT	0	4	190	null
+t38	INT	0	4	194	null
+t39	INT	0	4	198	null
+
+  0) printInt : 
+  1) t0 = 0
+  2) return t0
+  3) readInt : 
+  4) t1 = 1
+  5) return t1
+  6) printStr : 
+  7) t2 = 2
+  8) return t2
+  9) main : 
+ 10) t3 = &n
+ 11) param t3
+ 12) t4 = call readInt, 1
+ 13) t5 = 0
+ 14) i = t5
+ 15) if i < n goto 22
+ 16) goto 29
+ 17) goto 29
+ 18) t6 = 1
+ 19) t7 = i + t6
+ 20) i = t7
+ 21) goto 15
+ 22) t8 = &m
+ 23) param t8
+ 24) t9 = call readInt, 1
+ 25) t10 = i
+ 26) t11 = a[t10]
+ 27) a[t10] = m
+ 28) goto 18
+ 29) t12 = 0
+ 30) t13 = t12
+ 31) t14 = a[t13]
+ 32) m = t14
+ 33) t15 = 1
+ 34) i = t15
+ 35) if i < n goto 42
+ 36) goto 52
+ 37) goto 52
+ 38) t16 = 1
+ 39) t17 = i + t16
+ 40) i = t17
+ 41) goto 35
+ 42) t18 = i
+ 43) t19 = a[t18]
+ 44) if t19 > m goto 47
+ 45) goto 38
+ 46) goto 51
+ 47) t20 = i
+ 48) t21 = a[t20]
+ 49) m = t21
+ 50) goto (null)
+ 51) goto 38
+ 52) t22 = "Max of: "
+ 53) param t22
+ 54) t23 = call printStr, 1
+ 55) t24 = 0
+ 56) t25 = t24
+ 57) t26 = a[t25]
+ 58) param t26
+ 59) t27 = call printInt, 1
+ 60) t28 = 1
+ 61) i = t28
+ 62) if i < n goto 69
+ 63) goto 77
+ 64) goto 77
+ 65) t29 = 1
+ 66) t30 = i + t29
+ 67) i = t30
+ 68) goto 62
+ 69) t31 = ", "
+ 70) param t31
+ 71) t32 = call printStr, 1
+ 72) t33 = i
+ 73) t34 = a[t33]
+ 74) param t34
+ 75) t35 = call printInt, 1
+ 76) goto 65
+ 77) t36 = ": = "
+ 78) param t36
+ 79) t37 = call printStr, 1
+ 80) param m
+ 81) t38 = call printInt, 1
+ 82) t39 = 0
+ 83) return t39

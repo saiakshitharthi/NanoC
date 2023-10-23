@@ -1,0 +1,101 @@
+  0) printInt : 
+  1) t0 = 0
+  2) return t0
+  3) readInt : 
+  4) t1 = 1
+  5) return t1
+  6) printStr : 
+  7) t2 = 2
+  8) return t2
+  9) main : 
+ 10) t3 = &n
+ 11) param t3
+ 12) t4 = call readInt , 1
+ 13) t5 = 0
+ 14) i = t5
+ 15) if i < n goto 22
+ 16) goto 29
+ 17) goto 29
+ 18) t6 = 1
+ 19) t7 = i + t6
+ 20) i = t7
+ 21) goto 15
+ 22) t8 = &m
+ 23) param t8
+ 24) t9 = call readInt , 1
+ 25) t10 = i
+ 26) t11 = a[t10]
+ 27) a[t10] = m
+ 28) goto 18
+ 29) t12 = 0
+ 30) i = t12
+ 31) if i < n goto 38
+ 32) goto 46
+ 33) goto 46
+ 34) t13 = 1
+ 35) t14 = i + t13
+ 36) i = t14
+ 37) goto 31
+ 38) t15 = i
+ 39) t16 = a[t15]
+ 40) param t16
+ 41) t17 = call printInt , 1
+ 42) t18 = " "
+ 43) param t18
+ 44) t19 = call printStr , 1
+ 45) goto 34
+ 46) t20 = 0
+ 47) t21 = t20
+ 48) t22 = a[t21]
+ 49) m = t22
+ 50) t23 = 1
+ 51) i = t23
+ 52) if i < n goto 59
+ 53) goto 69
+ 54) goto 69
+ 55) t24 = 1
+ 56) t25 = i + t24
+ 57) i = t25
+ 58) goto 52
+ 59) t26 = i
+ 60) t27 = a[t26]
+ 61) if t27 > m goto 64
+ 62) goto 55
+ 63) goto 68
+ 64) t28 = i
+ 65) t29 = a[t28]
+ 66) m = t29
+ 67) goto (null)
+ 68) goto 55
+ 69) t30 = "Max of: "
+ 70) param t30
+ 71) t31 = call printStr , 1
+ 72) t32 = 0
+ 73) t33 = t32
+ 74) t34 = a[t33]
+ 75) param t34
+ 76) t35 = call printInt , 1
+ 77) t36 = 1
+ 78) i = t36
+ 79) if i < n goto 86
+ 80) goto 94
+ 81) goto 94
+ 82) t37 = 1
+ 83) t38 = i + t37
+ 84) i = t38
+ 85) goto 79
+ 86) t39 = ", "
+ 87) param t39
+ 88) t40 = call printStr , 1
+ 89) t41 = i
+ 90) t42 = a[t41]
+ 91) param t42
+ 92) t43 = call printInt , 1
+ 93) goto 82
+ 94) t44 = ": = "
+ 95) param t44
+ 96) t45 = call printStr , 1
+ 97) param m
+ 98) t46 = call printInt , 1
+ 99) t47 = 0
+100) return t47

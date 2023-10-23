@@ -1,0 +1,2 @@
+x	INT	0	4	0	null	0
+t0	INT	0	4	4	null	0

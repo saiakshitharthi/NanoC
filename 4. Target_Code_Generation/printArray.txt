@@ -1,0 +1,12 @@
+size	INT	0	4	0	null	0
+i	INT	0	4	4	null	0
+t13	INT	0	4	8	null	0
+t14	INT	0	4	12	null	0
+t15	INT	0	4	16	null	0
+t16	INT	0	4	20	null	0
+t17	INT	0	4	24	null	0
+t18	INT	0	4	28	null	0
+t19	CHAR	" "	1	32	null	1
+t20	INT	0	4	33	null	0
+t21	CHAR	"\n"	2	37	null	1
+t22	INT	0	4	39	null	0

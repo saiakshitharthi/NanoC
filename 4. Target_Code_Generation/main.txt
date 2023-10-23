@@ -1,0 +1,17 @@
+n	INT	0	4	0	null	0
+t47	CHAR	"Input array size: \n"	20	4	null	1
+t48	INT	0	4	24	null	0
+t49	INT*	0	4	28	null	0
+t50	INT	0	4	32	null	0
+t51	INT	0	4	36	null	0
+t52	CHAR	"Input array elements: \n"	24	40	null	1
+t53	INT	0	4	64	null	0
+t54	VOID*	0	4	68	null	0
+t55	CHAR	"Input array: \n"	15	72	null	1
+t56	INT	0	4	87	null	0
+t57	VOID*	0	4	91	null	0
+t58	VOID*	0	4	95	null	0
+t59	CHAR	"Sorted array: \n"	16	99	null	1
+t60	INT	0	4	115	null	0
+t61	VOID*	0	4	119	null	0
+t62	INT	0	4	123	null	0

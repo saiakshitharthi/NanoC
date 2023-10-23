@@ -1,0 +1,86 @@
+  0) printInt : 
+  1) t0 = 0
+  2) return t0
+  3) readInt : 
+  4) t1 = 1
+  5) return t1
+  6) printStr : 
+  7) t2 = 2
+  8) return t2
+  9) fibonacci : 
+ 10) t3 = 2
+ 11) t4 = n % t3
+ 12) t5 = 0
+ 13) if t4 == t5 goto 16
+ 14) goto 19
+ 15) goto 25
+ 16) param n
+ 17) t6 = call f_even , 1
+ 18) goto 23
+ 19) param n
+ 20) t7 = call f_odd , 1
+ 21) t8 = t7
+ 22) goto 25
+ 23) t8 = t6
+ 24) goto 25
+ 25) return t8
+ 26) f_odd : 
+ 27) t9 = 1
+ 28) if n == t9 goto 31
+ 29) goto 33
+ 30) goto 46
+ 31) t10 = 1
+ 32) goto 44
+ 33) t11 = 1
+ 34) t12 = n - t11
+ 35) param t12
+ 36) t13 = call f_even , 1
+ 37) t14 = 2
+ 38) t15 = n - t14
+ 39) param t15
+ 40) t16 = call f_odd , 1
+ 41) t17 = t13 + t16
+ 42) t18 = t17
+ 43) goto 46
+ 44) t18 = t10
+ 45) goto 46
+ 46) return t18
+ 47) f_even : 
+ 48) t19 = 0
+ 49) if n == t19 goto 52
+ 50) goto 54
+ 51) goto 67
+ 52) t20 = 0
+ 53) goto 65
+ 54) t21 = 1
+ 55) t22 = n - t21
+ 56) param t22
+ 57) t23 = call f_odd , 1
+ 58) t24 = 2
+ 59) t25 = n - t24
+ 60) param t25
+ 61) t26 = call f_even , 1
+ 62) t27 = t23 + t26
+ 63) t28 = t27
+ 64) goto 67
+ 65) t28 = t20
+ 66) goto 67
+ 67) return t28
+ 68) main : 
+ 69) t29 = 30
+ 70) n = t29
+ 71) param n
+ 72) t30 = call fibonacci , 1
+ 73) r = t30
+ 74) t31 = "fibo("
+ 75) param t31
+ 76) t32 = call printStr , 1
+ 77) param n
+ 78) t33 = call printInt , 1
+ 79) t34 = ") = "
+ 80) param t34
+ 81) t35 = call printStr , 1
+ 82) param r
+ 83) t36 = call printInt , 1
+ 84) t37 = 0
+ 85) return t37

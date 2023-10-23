@@ -1,0 +1,30 @@
+  0) printInt : 
+  1) t0 = 0
+  2) return t0
+  3) readInt : 
+  4) t1 = 1
+  5) return t1
+  6) printStr : 
+  7) t2 = 2
+  8) return t2
+  9) main : 
+ 10) t3 = 2
+ 11) x = t3
+ 12) t4 = 3
+ 13) y = t4
+ 14) t5 = x + y
+ 15) z = t5
+ 16) param x
+ 17) t6 = call printInt , 1
+ 18) t7 = "+"
+ 19) param t7
+ 20) t8 = call printStr , 1
+ 21) param y
+ 22) t9 = call printInt , 1
+ 23) t10 = " = "
+ 24) param t10
+ 25) t11 = call printStr , 1
+ 26) param z
+ 27) t12 = call printInt , 1
+ 28) t13 = 0
+ 29) return t13

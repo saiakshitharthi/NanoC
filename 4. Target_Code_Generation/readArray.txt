@@ -1,0 +1,10 @@
+size	INT	0	4	0	null	0
+i	INT	0	4	4	null	0
+t5	INT	0	4	8	null	0
+t6	INT	0	4	12	null	0
+t7	INT	0	4	16	null	0
+t8	CHAR	"Input next element\n"	20	20	null	1
+t9	INT	0	4	40	null	0
+t10	INT	0	4	44	null	0
+t11	INT*	0	4	48	null	0
+t12	INT	0	4	52	null	0

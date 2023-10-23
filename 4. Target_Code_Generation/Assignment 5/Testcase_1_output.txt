@@ -1,0 +1,57 @@
+Success: Parsing Done
++---------------------------------------+
++---------------Global Symbol Table---------------+
+Name	Type	Initial value	size	Offset	nested table
+printInt	INT->INT	0	0	0	printInt
+readInt	INT*->INT	0	0	0	readInt
+printStr	CHAR*->INT	0	0	0	printStr
+main	VOID->INT	0	0	0	main
++---------------Symbol Table of printInt---------------+
+Name	Type	Initial value	size	Offset	nested table
+x	INT	0	4	0	null
+t0	INT	0	4	4	null
++---------------Symbol Table of readInt---------------+
+Name	Type	Initial value	size	Offset	nested table
+n	INT*	0	4	0	null
+t1	INT	0	4	4	null
++---------------Symbol Table of printStr---------------+
+Name	Type	Initial value	size	Offset	nested table
+s	CHAR*	0	1	0	null
+t2	INT	0	4	1	null
++---------------Symbol Table of main---------------+
+Name	Type	Initial value	size	Offset	nested table
+t3	INT	0	4	0	null
+x	INT	0	4	4	null
+t4	INT	0	4	8	null
+y	INT	0	4	12	null
+z	INT	0	4	16	null
+t5	INT	0	4	20	null
+t6	INT	0	4	24	null
+t7	INT	0	4	28	null
+t8	INT	0	4	32	null
+t9	INT	0	4	36	null
+
+  0) printInt : 
+  1) t0 = 0
+  2) return t0
+  3) readInt : 
+  4) t1 = 1
+  5) return t1
+  6) printStr : 
+  7) t2 = 2
+  8) return t2
+  9) main : 
+ 10) t3 = 2
+ 11) x = t3
+ 12) t4 = 3
+ 13) y = t4
+ 14) t5 = x + y
+ 15) z = t5
+ 16) param x
+ 17) t6 = call printInt, 1
+ 18) param y
+ 19) t7 = call printInt, 1
+ 20) param z
+ 21) t8 = call printInt, 1
+ 22) t9 = 0
+ 23) return t9

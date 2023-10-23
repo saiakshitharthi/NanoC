@@ -1,0 +1,78 @@
+Success: Parsing Done
++---------------------------------------+
++---------------Global Symbol Table---------------+
+Name	Type	Initial value	size	Offset	nested table
+printInt	INT->INT	0	0	0	printInt
+readInt	INT*->INT	0	0	0	readInt
+printStr	CHAR*->INT	0	0	0	printStr
+a	INT	0	40	0	null
+main	VOID->INT	0	0	40	main
++---------------Symbol Table of printInt---------------+
+Name	Type	Initial value	size	Offset	nested table
+x	INT	0	4	0	null
+t0	INT	0	4	4	null
++---------------Symbol Table of readInt---------------+
+Name	Type	Initial value	size	Offset	nested table
+n	INT*	0	4	0	null
+t1	INT	0	4	4	null
++---------------Symbol Table of printStr---------------+
+Name	Type	Initial value	size	Offset	nested table
+s	CHAR*	0	1	0	null
+t2	INT	0	4	1	null
++---------------Symbol Table of main---------------+
+Name	Type	Initial value	size	Offset	nested table
+n	INT	0	4	0	null
+t3	INT	0	4	4	null
+i	INT	0	4	8	null
+t4	INT	0	4	12	null
+r	INT	0	4	16	null
+t5	INT*	0	4	20	null
+t6	INT	0	4	24	null
+t7	INT	0	4	28	null
+t8	INT	0	4	32	null
+t9	INT	0	4	36	null
+t10	INT	0	4	40	null
+t11	INT	0	4	44	null
+t12	CHAR	"! = "	4	48	null
+t13	INT	0	4	52	null
+t14	INT	0	4	56	null
+t15	INT	0	4	60	null
+
+  0) printInt : 
+  1) t0 = 0
+  2) return t0
+  3) readInt : 
+  4) t1 = 1
+  5) return t1
+  6) printStr : 
+  7) t2 = 2
+  8) return t2
+  9) main : 
+ 10) t3 = 0
+ 11) i = t3
+ 12) t4 = 1
+ 13) r = t4
+ 14) t5 = &n
+ 15) param t5
+ 16) t6 = call readInt, 1
+ 17) t7 = 1
+ 18) i = t7
+ 19) if i <= n goto 26
+ 20) goto 29
+ 21) goto 29
+ 22) t8 = 1
+ 23) t9 = i + t8
+ 24) i = t9
+ 25) goto 19
+ 26) t10 = r * i
+ 27) r = t10
+ 28) goto 22
+ 29) param n
+ 30) t11 = call printInt, 1
+ 31) t12 = "! = "
+ 32) param t12
+ 33) t13 = call printStr, 1
+ 34) param r
+ 35) t14 = call printInt, 1
+ 36) t15 = 0
+ 37) return t15

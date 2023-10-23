@@ -1,0 +1,175 @@
+Success: Parsing Done
++---------------------------------------+
++---------------Global Symbol Table---------------+
+Name	Type	Initial value	size	Offset	nested table
+printInt	INT->INT	0	0	0	printInt
+readInt	INT*->INT	0	0	0	readInt
+printStr	CHAR*->INT	0	0	0	printStr
+functionName	VOID*->VOID	0	0	0	functionName
+main	VOID->INT	0	0	0	main
++---------------Symbol Table of printInt---------------+
+Name	Type	Initial value	size	Offset	nested table
+x	INT	0	4	0	null
+t0	INT	0	4	4	null
++---------------Symbol Table of readInt---------------+
+Name	Type	Initial value	size	Offset	nested table
+n	INT*	0	4	0	null
+t1	INT	0	4	4	null
++---------------Symbol Table of printStr---------------+
+Name	Type	Initial value	size	Offset	nested table
+s	CHAR*	0	1	0	null
+t2	INT	0	4	1	null
++---------------Symbol Table of functionName---------------+
+Name	Type	Initial value	size	Offset	nested table
+abc	VOID*	0	4	0	null
+arr	INT*	0	16	4	null
+ar	INT	0	20	20	null
+t3	INT	0	4	40	null
+x	INT	0	4	44	null
+t4	INT	0	4	48	null
+y	INT	0	4	52	null
+t5	INT	0	4	56	null
+z	INT	0	4	60	null
+t6	INT	0	4	64	null
+t7	INT	0	4	68	null
+t8	INT	0	4	72	null
+t9	INT	0	4	76	null
+t10	INT	0	4	80	null
+none	CHAR*	0	4	84	null
+t11	INT	0	4	88	null
+a	INT	0	4	92	null
+t12	INT	0	4	96	null
+b	INT	0	4	100	null
+t13	INT	0	4	104	null
+c	INT	0	4	108	null
+t14	INT	0	4	112	null
+d	INT	0	4	116	null
+t15	INT	0	4	120	null
+e	INT	0	4	124	null
+t16	INT	0	4	128	null
+f	INT	0	4	132	null
+t17	INT	0	4	136	null
+h	INT	0	4	140	null
+t18	INT	0	4	144	null
+t19	INT	0	4	148	null
+t20	INT	0	4	152	null
+t21	INT	0	4	156	null
+t22	INT	0	4	160	null
+t23	INT	0	4	164	null
+t24	INT	0	4	168	null
+t25	INT	0	4	172	null
+t26	INT	0	4	176	null
+t27	INT	0	4	180	null
+t28	INT	0	4	184	null
+t29	INT	0	4	188	null
+t30	INT	0	4	192	null
+t31	INT	0	4	196	null
+t32	INT	0	4	200	null
+t33	INT	0	4	204	null
+t34	INT	0	4	208	null
+t35	INT	0	4	212	null
+t36	INT	0	4	216	null
+q	INT	0	4	220	null
+t37	INT	0	4	224	null
++---------------Symbol Table of main---------------+
+Name	Type	Initial value	size	Offset	nested table
+t38	INT	0	4	0	null
+t39	INT	0	4	4	null
+x	INT	0	4	8	null
+t40	INT	0	4	12	null
+y	INT	0	4	16	null
+z	INT	0	4	20	null
+t41	INT	0	4	24	null
+t42	INT	0	4	28	null
+t43	CHAR	"+"	1	32	null
+t44	INT	0	4	33	null
+t45	INT	0	4	37	null
+t46	CHAR	" = "	3	41	null
+t47	INT	0	4	44	null
+t48	INT	0	4	48	null
+t49	INT	0	4	52	null
+
+  0) printInt : 
+  1) t0 = 0
+  2) return t0
+  3) readInt : 
+  4) t1 = 1
+  5) return t1
+  6) printStr : 
+  7) t2 = 2
+  8) return t2
+  9) functionName : 
+ 10) t3 = 2
+ 11) x = t3
+ 12) t4 = - x
+ 13) y = t4
+ 14) t5 = 1
+ 15) z = t5
+ 16) t6 = x * y
+ 17) t7 = t6 + z
+ 18) t8 = t7
+ 19) t9 = 7
+ 20) ar[t8] = t9
+ 21) t10 = 2348
+ 22) none = t10
+ 23) t11 = 1
+ 24) a = t11
+ 25) t12 = 2
+ 26) b = t12
+ 27) t13 = 3
+ 28) c = t13
+ 29) t14 = 4
+ 30) d = t14
+ 31) t15 = 5
+ 32) e = t15
+ 33) t16 = 6
+ 34) f = t16
+ 35) t17 = 7
+ 36) h = t17
+ 37) t18 = a + b
+ 38) t19 = t18 * c
+ 39) t20 = t19 % d
+ 40) t21 = t20 % f
+ 41) t22 = t21 * c
+ 42) t23 = 123
+ 43) t24 = - t23
+ 44) t25 = t22 / t24
+ 45) z = t25
+ 46) t26 = a / b
+ 47) t27 = t26 / c
+ 48) t28 = t27 / d
+ 49) t29 = t28 / e
+ 50) t30 = t29 / f
+ 51) t31 = t30 / c
+ 52) t32 = t31 / h
+ 53) t33 = t32 * a
+ 54) t34 = t33 * b
+ 55) t35 = t34 * c
+ 56) t36 = t35 * d
+ 57) q = t36
+ 58) t37 = ~b
+ 59) a = t37
+ 60) return
+ 61) main : 
+ 62) t38 = 0
+ 63) return t38
+ 64) t39 = 2
+ 65) x = t39
+ 66) t40 = 3
+ 67) y = t40
+ 68) t41 = x + y
+ 69) z = t41
+ 70) param x
+ 71) t42 = call printInt, 1
+ 72) t43 = "+"
+ 73) param t43
+ 74) t44 = call printStr, 1
+ 75) param y
+ 76) t45 = call printInt, 1
+ 77) t46 = " = "
+ 78) param t46
+ 79) t47 = call printStr, 1
+ 80) param z
+ 81) t48 = call printInt, 1
+ 82) t49 = 0
+ 83) return t49

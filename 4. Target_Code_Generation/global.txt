@@ -1,0 +1,9 @@
+printInt	INT->INT	0	0	0	printInt	0
+readInt	INT*->INT	0	0	0	readInt	0
+printStr	CHAR*->INT	0	0	0	printStr	0
+swap	INT*^INT*->VOID	0	0	0	swap	0
+readArray	INT->VOID	0	0	0	readArray	0
+printArray	INT->VOID	0	0	0	printArray	0
+bubbleSort	INT->VOID	0	0	0	bubbleSort	0
+arr	INT	0	80	0	null	1
+main	VOID->INT	0	0	80	main	0

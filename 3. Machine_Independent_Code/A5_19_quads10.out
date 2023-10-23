@@ -1,0 +1,184 @@
+Success: Parsing Done
++---------------------------------------+
++---------------Global Symbol Table---------------+
+Name	Type	Initial value	size	Offset	nested table
+printInt	INT->INT	0	0	0	printInt
+readInt	INT*->INT	0	0	0	readInt
+printStr	CHAR*->INT	0	0	0	printStr
+arr	INT	0	40	0	null
+binarySearch	INT*INT*INT->INT	0	0	40	binarySearch
+main	VOID->INT	0	0	40	main
++---------------Symbol Table of printInt---------------+
+Name	Type	Initial value	size	Offset	nested table
+x	INT	0	4	0	null
+t0	INT	0	4	4	null
++---------------Symbol Table of readInt---------------+
+Name	Type	Initial value	size	Offset	nested table
+n	INT*	0	4	0	null
+t1	INT	0	4	4	null
++---------------Symbol Table of printStr---------------+
+Name	Type	Initial value	size	Offset	nested table
+s	CHAR*	0	1	0	null
+t2	INT	0	4	1	null
++---------------Symbol Table of binarySearch---------------+
+Name	Type	Initial value	size	Offset	nested table
+l	INT	0	4	0	null
+r	INT	0	4	4	null
+x	INT	0	4	8	null
+t3	INT	0	4	12	null
+t4	INT	0	4	16	null
+t5	INT	0	4	20	null
+t6	INT	0	4	24	null
+mid	INT	0	4	28	null
+t7	INT	0	4	32	null
+t8	INT	0	4	36	null
+t9	INT	0	4	40	null
+t10	INT	0	4	44	null
+t11	INT	0	4	48	null
+t12	INT	0	4	52	null
+t13	INT	0	4	56	null
+t14	INT	0	4	60	null
+t15	INT	0	4	64	null
+t16	INT	0	4	68	null
+t17	INT	0	4	72	null
+t18	INT	0	4	76	null
++---------------Symbol Table of main---------------+
+Name	Type	Initial value	size	Offset	nested table
+t19	INT	0	4	0	null
+n	INT	0	4	4	null
+t20	INT	0	4	8	null
+t21	INT	0	4	12	null
+t22	INT	0	4	16	null
+t23	INT	0	4	20	null
+t24	INT	0	4	24	null
+t25	INT	0	4	28	null
+t26	INT	0	4	32	null
+t27	INT	0	4	36	null
+t28	INT	0	4	40	null
+t29	INT	0	4	44	null
+t30	INT	0	4	48	null
+t31	INT	0	4	52	null
+t32	INT	0	4	56	null
+t33	INT	0	4	60	null
+t34	INT	0	4	64	null
+t35	INT	0	4	68	null
+t36	INT	0	4	72	null
+t37	INT	0	4	76	null
+t38	INT	0	4	80	null
+x	INT	0	4	84	null
+t39	INT	0	4	88	null
+t40	INT	0	4	92	null
+t41	INT	0	4	96	null
+t42	INT	0	4	100	null
+result	INT	0	4	104	null
+t43	INT	0	4	108	null
+t44	INT	0	4	112	null
+t45	CHAR	"Element is not present in array"	31	116	null
+t46	INT	0	4	147	null
+t47	CHAR	"Element is present at index "	28	151	null
+t48	INT	0	4	179	null
+t49	INT	0	4	183	null
+t50	INT	0	4	187	null
+
+  0) printInt : 
+  1) t0 = 0
+  2) return t0
+  3) readInt : 
+  4) t1 = 1
+  5) return t1
+  6) printStr : 
+  7) t2 = 2
+  8) return t2
+  9) binarySearch : 
+ 10) if r >= l goto 13
+ 11) goto 46
+ 12) goto 46
+ 13) t3 = r - l
+ 14) t4 = 2
+ 15) t5 = t3 / t4
+ 16) t6 = l + t5
+ 17) mid = t6
+ 18) t7 = mid
+ 19) t8 = arr[t7]
+ 20) if t8 == x goto 23
+ 21) goto 25
+ 22) goto 25
+ 23) return mid
+ 24) goto (null)
+ 25) t9 = mid
+ 26) t10 = arr[t9]
+ 27) if t10 > x goto 30
+ 28) goto 38
+ 29) goto 38
+ 30) t11 = 1
+ 31) t12 = mid - t11
+ 32) param l
+ 33) param t12
+ 34) param x
+ 35) t13 = call binarySearch, 3
+ 36) return t13
+ 37) goto (null)
+ 38) t14 = 1
+ 39) t15 = mid + t14
+ 40) param t15
+ 41) param r
+ 42) param x
+ 43) t16 = call binarySearch, 3
+ 44) return t16
+ 45) goto (null)
+ 46) t17 = 1
+ 47) t18 = - t17
+ 48) return t18
+ 49) main : 
+ 50) t19 = 6
+ 51) n = t19
+ 52) t20 = 0
+ 53) t21 = t20
+ 54) t22 = 2
+ 55) arr[t21] = t22
+ 56) t23 = 1
+ 57) t24 = t23
+ 58) t25 = 3
+ 59) arr[t24] = t25
+ 60) t26 = 2
+ 61) t27 = t26
+ 62) t28 = 4
+ 63) arr[t27] = t28
+ 64) t29 = 3
+ 65) t30 = t29
+ 66) t31 = 10
+ 67) arr[t30] = t31
+ 68) t32 = 4
+ 69) t33 = t32
+ 70) t34 = 40
+ 71) arr[t33] = t34
+ 72) t35 = 5
+ 73) t36 = t35
+ 74) t37 = 50
+ 75) arr[t36] = t37
+ 76) t38 = 10
+ 77) x = t38
+ 78) t39 = 0
+ 79) t40 = 1
+ 80) t41 = n - t40
+ 81) param t39
+ 82) param t41
+ 83) param x
+ 84) t42 = call binarySearch, 3
+ 85) result = t42
+ 86) t43 = 1
+ 87) t44 = - t43
+ 88) if result == t44 goto 91
+ 89) goto 95
+ 90) goto 100
+ 91) t45 = "Element is not present in array"
+ 92) param t45
+ 93) t46 = call printStr, 1
+ 94) goto 100
+ 95) t47 = "Element is present at index "
+ 96) param t47
+ 97) t48 = call printStr, 1
+ 98) param result
+ 99) t49 = call printInt, 1
+100) t50 = 0
+101) return t50

@@ -1,0 +1,3270 @@
+Terminals unused in grammar
+
+    COMMENT
+    ERROR
+
+
+State 233 conflicts: 1 shift/reduce
+
+
+Grammar
+
+    0 $accept: translation_unit $end
+
+    1 primary_expression: IDENTIFIER
+    2                   | INTEGER_CONSTANT
+    3                   | CHAR_CONSTANT
+    4                   | STRING_LITERAL
+    5                   | OPEN_BRACKET expression CLOSE_BRACKET
+
+    6 postfix_expression: primary_expression
+    7                   | postfix_expression OPEN_SQUARE_BRACKET expression CLOSE_SQUARE_BRACKET
+    8                   | postfix_expression OPEN_BRACKET CLOSE_BRACKET
+    9                   | postfix_expression OPEN_BRACKET argument_expression_list CLOSE_BRACKET
+   10                   | postfix_expression POINTER_INDIRECTION IDENTIFIER
+
+   11 argument_expression_list: assignment_expression
+   12                         | argument_expression_list COMMA assignment_expression
+
+   13 unary_expression: postfix_expression
+   14                 | unary_operator O unary_expression
+
+   15 unary_operator: AND
+   16               | MULT
+   17               | ADD
+   18               | SUB
+   19               | NOT
+
+   20 multiplicative_expression: unary_expression
+   21                          | multiplicative_expression MULT unary_expression
+   22                          | multiplicative_expression DIVIDE unary_expression
+   23                          | multiplicative_expression REMAINDER unary_expression
+
+   24 additive_expression: multiplicative_expression
+   25                    | additive_expression ADD multiplicative_expression
+   26                    | additive_expression SUB multiplicative_expression
+
+   27 relational_expression: additive_expression
+   28                      | relational_expression LESS_THAN additive_expression
+   29                      | relational_expression GREATER_THAN additive_expression
+   30                      | relational_expression LESS_THAN_OR_EQUAL additive_expression
+   31                      | relational_expression GREATER_THAN_OR_EQUAL additive_expression
+
+   32 equality_expression: relational_expression
+   33                    | equality_expression EQUAL_TO relational_expression
+   34                    | equality_expression NOT_EQUAL_TO relational_expression
+
+   35 logical_AND_expression: equality_expression
+   36                       | logical_AND_expression LOGICAL_AND M equality_expression
+
+   37 logical_OR_expression: logical_AND_expression
+   38                      | logical_OR_expression LOGICAL_OR M logical_AND_expression
+
+   39 conditional_expression: logical_OR_expression
+   40                       | logical_OR_expression N QUESTION_MARK M expression N COLON M conditional_expression
+
+   41 assignment_expression: conditional_expression
+   42                      | unary_expression EQUAL assignment_expression
+
+   43 expression: assignment_expression
+
+   44 internal_declaration: non_void_type_specifier declarator
+   45                     | VOID pointer direct_declarator
+
+   46 direct_declarator: IDENTIFIER OPEN_SQUARE_BRACKET INTEGER_CONSTANT CLOSE_SQUARE_BRACKET SEMI_COLON
+   47                  | IDENTIFIER SEMI_COLON
+   48                  | IDENTIFIER EQUAL initializer SEMI_COLON
+
+   49 non_void_type_specifier: CHAR
+   50                        | INT
+
+   51 declarator: direct_declarator
+   52           | pointer direct_declarator
+
+   53 pointer: MULT
+
+   54 parameter_list2: parameter_declaration2
+   55                | parameter_declaration2 COMMA parameter_list2
+
+   56 parameter_declaration2: INT IDENTIFIER
+   57                       | CHAR IDENTIFIER
+   58                       | non_void_type_specifier pointer IDENTIFIER
+   59                       | VOID pointer IDENTIFIER
+
+   60 initializer: assignment_expression
+
+   61 statement: compound_statement
+   62          | expression_statement
+   63          | selection_statement
+   64          | iteration_statement
+   65          | jump_statement
+
+   66 compound_statement: OPEN_FLOWER_BRACKET CLOSE_FLOWER_BRACKET
+   67                   | OPEN_FLOWER_BRACKET block_item_list CLOSE_FLOWER_BRACKET
+
+   68 block_item_list: block_item
+   69                | block_item_list M block_item
+
+   70 block_item: internal_declaration
+   71           | statement
+
+   72 expression_statement: SEMI_COLON
+   73                     | expression SEMI_COLON
+
+   74 selection_statement: IF OPEN_BRACKET expression N CLOSE_BRACKET M statement N ELSE M statement
+   75                    | IF OPEN_BRACKET expression N CLOSE_BRACKET M statement N
+
+   76 iteration_statement: FOR OPEN_BRACKET expression_statement M expression_statement N M expression N CLOSE_BRACKET M statement
+
+   77 jump_statement: RETURN SEMI_COLON
+   78               | RETURN expression SEMI_COLON
+
+   79 translation_unit: function
+   80                 | function translation_unit
+
+   81 function: internal_declaration
+   82         | VOID pointer IDENTIFIER OPEN_BRACKET CLOSE_BRACKET SEMI_COLON
+   83         | VOID IDENTIFIER OPEN_BRACKET CLOSE_BRACKET SEMI_COLON
+   84         | VOID IDENTIFIER OPEN_BRACKET VOID CLOSE_BRACKET SEMI_COLON
+   85         | VOID pointer IDENTIFIER OPEN_BRACKET VOID CLOSE_BRACKET SEMI_COLON
+   86         | VOID IDENTIFIER OPEN_BRACKET parameter_list2 CLOSE_BRACKET SEMI_COLON
+   87         | VOID pointer IDENTIFIER OPEN_BRACKET parameter_list2 CLOSE_BRACKET SEMI_COLON
+   88         | non_void_type_specifier pointer IDENTIFIER OPEN_BRACKET CLOSE_BRACKET SEMI_COLON
+   89         | non_void_type_specifier IDENTIFIER OPEN_BRACKET CLOSE_BRACKET SEMI_COLON
+   90         | non_void_type_specifier IDENTIFIER OPEN_BRACKET VOID CLOSE_BRACKET SEMI_COLON
+   91         | non_void_type_specifier pointer IDENTIFIER OPEN_BRACKET VOID CLOSE_BRACKET SEMI_COLON
+   92         | non_void_type_specifier IDENTIFIER OPEN_BRACKET parameter_list2 CLOSE_BRACKET SEMI_COLON
+   93         | non_void_type_specifier pointer IDENTIFIER OPEN_BRACKET parameter_list2 CLOSE_BRACKET SEMI_COLON
+   94         | function_definition
+
+   95 $@1: ε
+
+   96 function_definition: VOID IDENTIFIER OPEN_BRACKET CLOSE_BRACKET $@1 compound_statement F
+
+   97 $@2: ε
+
+   98 function_definition: VOID pointer IDENTIFIER OPEN_BRACKET CLOSE_BRACKET $@2 compound_statement F
+
+   99 $@3: ε
+
+  100 function_definition: VOID IDENTIFIER OPEN_BRACKET parameter_list2 CLOSE_BRACKET $@3 compound_statement F
+
+  101 $@4: ε
+
+  102 function_definition: VOID pointer IDENTIFIER OPEN_BRACKET parameter_list2 CLOSE_BRACKET $@4 compound_statement F
+
+  103 $@5: ε
+
+  104 function_definition: VOID IDENTIFIER OPEN_BRACKET VOID CLOSE_BRACKET $@5 compound_statement F
+
+  105 $@6: ε
+
+  106 function_definition: VOID pointer IDENTIFIER OPEN_BRACKET VOID CLOSE_BRACKET $@6 compound_statement F
+
+  107 $@7: ε
+
+  108 function_definition: non_void_type_specifier IDENTIFIER OPEN_BRACKET CLOSE_BRACKET $@7 compound_statement F
+
+  109 $@8: ε
+
+  110 function_definition: non_void_type_specifier pointer IDENTIFIER OPEN_BRACKET CLOSE_BRACKET $@8 compound_statement F
+
+  111 $@9: ε
+
+  112 function_definition: non_void_type_specifier IDENTIFIER OPEN_BRACKET parameter_list2 CLOSE_BRACKET $@9 compound_statement F
+
+  113 $@10: ε
+
+  114 function_definition: non_void_type_specifier pointer IDENTIFIER OPEN_BRACKET parameter_list2 CLOSE_BRACKET $@10 compound_statement F
+
+  115 $@11: ε
+
+  116 function_definition: non_void_type_specifier IDENTIFIER OPEN_BRACKET VOID CLOSE_BRACKET $@11 compound_statement F
+
+  117 $@12: ε
+
+  118 function_definition: non_void_type_specifier pointer IDENTIFIER OPEN_BRACKET VOID CLOSE_BRACKET $@12 compound_statement F
+
+  119 M: ε
+
+  120 N: ε
+
+  121 O: ε
+
+  122 F: ε
+
+
+Terminals, with rules where they appear
+
+    $end (0) 0
+    error (256)
+    COMMENT (258)
+    ERROR (259)
+    VOID (260) 45 59 82 83 84 85 86 87 90 91 96 98 100 102 104 106 116 118
+    IF (261) 74 75
+    ELSE (262) 74
+    FOR (263) 76
+    RETURN (264) 77 78
+    POINTER_INDIRECTION (265) 10
+    LESS_THAN_OR_EQUAL (266) 30
+    GREATER_THAN_OR_EQUAL (267) 31
+    EQUAL_TO (268) 33
+    NOT_EQUAL_TO (269) 34
+    LOGICAL_OR (270) 38
+    LOGICAL_AND (271) 36
+    OPEN_SQUARE_BRACKET (272) 7 46
+    CLOSE_SQUARE_BRACKET (273) 7 46
+    OPEN_BRACKET (274) 5 8 9 74 75 76 82 83 84 85 86 87 88 89 90 91 92 93 96 98 100 102 104 106 108 110 112 114 116 118
+    CLOSE_BRACKET (275) 5 8 9 74 75 76 82 83 84 85 86 87 88 89 90 91 92 93 96 98 100 102 104 106 108 110 112 114 116 118
+    OPEN_FLOWER_BRACKET (276) 66 67
+    CLOSE_FLOWER_BRACKET (277) 66 67
+    AND (278) 15
+    MULT (279) 16 21 53
+    ADD (280) 17 25
+    SUB (281) 18 26
+    DIVIDE (282) 22
+    REMAINDER (283) 23
+    NOT (284) 19
+    QUESTION_MARK (285) 40
+    LESS_THAN (286) 28
+    GREATER_THAN (287) 29
+    EQUAL (288) 42 48
+    COLON (289) 40
+    SEMI_COLON (290) 46 47 48 72 73 77 78 82 83 84 85 86 87 88 89 90 91 92 93
+    COMMA (291) 12 55
+    CHAR (292) 49 57
+    INT (293) 50 56
+    IDENTIFIER <datatype> (294) 1 10 46 47 48 56 57 58 59 82 83 84 85 86 87 88 89 90 91 92 93 96 98 100 102 104 106 108 110 112 114 116 118
+    INTEGER_CONSTANT <intval> (295) 2 46
+    CHAR_CONSTANT <charval> (296) 3
+    STRING_LITERAL <strval> (297) 4
+
+
+Nonterminals, with rules where they appear
+
+    $accept (43)
+        on left: 0
+    primary_expression <attribute_exp> (44)
+        on left: 1 2 3 4 5
+        on right: 6
+    postfix_expression <attribute_exp> (45)
+        on left: 6 7 8 9 10
+        on right: 7 8 9 10 13
+    argument_expression_list <param_attr> (46)
+        on left: 11 12
+        on right: 9 12
+    unary_expression <attribute_exp> (47)
+        on left: 13 14
+        on right: 14 20 21 22 23 42
+    unary_operator <attribute_unary> (48)
+        on left: 15 16 17 18 19
+        on right: 14
+    multiplicative_expression <attribute_exp> (49)
+        on left: 20 21 22 23
+        on right: 21 22 23 24 25 26
+    additive_expression <attribute_exp> (50)
+        on left: 24 25 26
+        on right: 25 26 27 28 29 30 31
+    relational_expression <attribute_exp> (51)
+        on left: 27 28 29 30 31
+        on right: 28 29 30 31 32 33 34
+    equality_expression <attribute_exp> (52)
+        on left: 32 33 34
+        on right: 33 34 35 36
+    logical_AND_expression <attribute_exp> (53)
+        on left: 35 36
+        on right: 36 37 38
+    logical_OR_expression <attribute_exp> (54)
+        on left: 37 38
+        on right: 38 39 40
+    conditional_expression <attribute_exp> (55)
+        on left: 39 40
+        on right: 40 41
+    assignment_expression <attribute_exp> (56)
+        on left: 41 42
+        on right: 11 12 42 43 60
+    expression <attribute_exp> (57)
+        on left: 43
+        on right: 5 7 40 73 74 75 76 78
+    internal_declaration <datatype> (58)
+        on left: 44 45
+        on right: 70 81
+    direct_declarator <datatype> (59)
+        on left: 46 47 48
+        on right: 45 51 52
+    non_void_type_specifier <datatype> (60)
+        on left: 49 50
+        on right: 44 58 88 89 90 91 92 93 108 110 112 114 116 118
+    declarator <datatype> (61)
+        on left: 51 52
+        on right: 44
+    pointer <datatype> (62)
+        on left: 53
+        on right: 45 52 58 59 82 85 87 88 91 93 98 102 106 110 114 118
+    parameter_list2 <parametertype> (63)
+        on left: 54 55
+        on right: 55 86 87 92 93 100 102 112 114
+    parameter_declaration2 <datatype> (64)
+        on left: 56 57 58 59
+        on right: 54 55
+    initializer <datatype> (65)
+        on left: 60
+        on right: 48
+    statement <attribute_exp> (66)
+        on left: 61 62 63 64 65
+        on right: 71 74 75 76
+    compound_statement <attribute_exp> (67)
+        on left: 66 67
+        on right: 61 96 98 100 102 104 106 108 110 112 114 116 118
+    block_item_list <attribute_exp> (68)
+        on left: 68 69
+        on right: 67 69
+    block_item <attribute_exp> (69)
+        on left: 70 71
+        on right: 68 69
+    expression_statement <attribute_exp> (70)
+        on left: 72 73
+        on right: 62 76
+    selection_statement <attribute_exp> (71)
+        on left: 74 75
+        on right: 63
+    iteration_statement <attribute_exp> (72)
+        on left: 76
+        on right: 64
+    jump_statement <attribute_exp> (73)
+        on left: 77 78
+        on right: 65
+    translation_unit (74)
+        on left: 79 80
+        on right: 0 80
+    function (75)
+        on left: 81 82 83 84 85 86 87 88 89 90 91 92 93 94
+        on right: 79 80
+    function_definition (76)
+        on left: 96 98 100 102 104 106 108 110 112 114 116 118
+        on right: 94
+    $@1 (77)
+        on left: 95
+        on right: 96
+    $@2 (78)
+        on left: 97
+        on right: 98
+    $@3 (79)
+        on left: 99
+        on right: 100
+    $@4 (80)
+        on left: 101
+        on right: 102
+    $@5 (81)
+        on left: 103
+        on right: 104
+    $@6 (82)
+        on left: 105
+        on right: 106
+    $@7 (83)
+        on left: 107
+        on right: 108
+    $@8 (84)
+        on left: 109
+        on right: 110
+    $@9 (85)
+        on left: 111
+        on right: 112
+    $@10 (86)
+        on left: 113
+        on right: 114
+    $@11 (87)
+        on left: 115
+        on right: 116
+    $@12 (88)
+        on left: 117
+        on right: 118
+    M <instr> (89)
+        on left: 119
+        on right: 36 38 40 69 74 75 76
+    N <N_attr> (90)
+        on left: 120
+        on right: 40 74 75 76
+    O <instr> (91)
+        on left: 121
+        on right: 14
+    F (92)
+        on left: 122
+        on right: 96 98 100 102 104 106 108 110 112 114 116 118
+
+
+State 0
+
+    0 $accept: • translation_unit $end
+
+    VOID  shift, and go to state 1
+    CHAR  shift, and go to state 2
+    INT   shift, and go to state 3
+
+    internal_declaration     go to state 4
+    non_void_type_specifier  go to state 5
+    translation_unit         go to state 6
+    function                 go to state 7
+    function_definition      go to state 8
+
+
+State 1
+
+   45 internal_declaration: VOID • pointer direct_declarator
+   82 function: VOID • pointer IDENTIFIER OPEN_BRACKET CLOSE_BRACKET SEMI_COLON
+   83         | VOID • IDENTIFIER OPEN_BRACKET CLOSE_BRACKET SEMI_COLON
+   84         | VOID • IDENTIFIER OPEN_BRACKET VOID CLOSE_BRACKET SEMI_COLON
+   85         | VOID • pointer IDENTIFIER OPEN_BRACKET VOID CLOSE_BRACKET SEMI_COLON
+   86         | VOID • IDENTIFIER OPEN_BRACKET parameter_list2 CLOSE_BRACKET SEMI_COLON
+   87         | VOID • pointer IDENTIFIER OPEN_BRACKET parameter_list2 CLOSE_BRACKET SEMI_COLON
+   96 function_definition: VOID • IDENTIFIER OPEN_BRACKET CLOSE_BRACKET $@1 compound_statement F
+   98                    | VOID • pointer IDENTIFIER OPEN_BRACKET CLOSE_BRACKET $@2 compound_statement F
+  100                    | VOID • IDENTIFIER OPEN_BRACKET parameter_list2 CLOSE_BRACKET $@3 compound_statement F
+  102                    | VOID • pointer IDENTIFIER OPEN_BRACKET parameter_list2 CLOSE_BRACKET $@4 compound_statement F
+  104                    | VOID • IDENTIFIER OPEN_BRACKET VOID CLOSE_BRACKET $@5 compound_statement F
+  106                    | VOID • pointer IDENTIFIER OPEN_BRACKET VOID CLOSE_BRACKET $@6 compound_statement F
+
+    MULT        shift, and go to state 9
+    IDENTIFIER  shift, and go to state 10
+
+    pointer  go to state 11
+
+
+State 2
+
+   49 non_void_type_specifier: CHAR •
+
+    $default  reduce using rule 49 (non_void_type_specifier)
+
+
+State 3
+
+   50 non_void_type_specifier: INT •
+
+    $default  reduce using rule 50 (non_void_type_specifier)
+
+
+State 4
+
+   81 function: internal_declaration •
+
+    $default  reduce using rule 81 (function)
+
+
+State 5
+
+   44 internal_declaration: non_void_type_specifier • declarator
+   88 function: non_void_type_specifier • pointer IDENTIFIER OPEN_BRACKET CLOSE_BRACKET SEMI_COLON
+   89         | non_void_type_specifier • IDENTIFIER OPEN_BRACKET CLOSE_BRACKET SEMI_COLON
+   90         | non_void_type_specifier • IDENTIFIER OPEN_BRACKET VOID CLOSE_BRACKET SEMI_COLON
+   91         | non_void_type_specifier • pointer IDENTIFIER OPEN_BRACKET VOID CLOSE_BRACKET SEMI_COLON
+   92         | non_void_type_specifier • IDENTIFIER OPEN_BRACKET parameter_list2 CLOSE_BRACKET SEMI_COLON
+   93         | non_void_type_specifier • pointer IDENTIFIER OPEN_BRACKET parameter_list2 CLOSE_BRACKET SEMI_COLON
+  108 function_definition: non_void_type_specifier • IDENTIFIER OPEN_BRACKET CLOSE_BRACKET $@7 compound_statement F
+  110                    | non_void_type_specifier • pointer IDENTIFIER OPEN_BRACKET CLOSE_BRACKET $@8 compound_statement F
+  112                    | non_void_type_specifier • IDENTIFIER OPEN_BRACKET parameter_list2 CLOSE_BRACKET $@9 compound_statement F
+  114                    | non_void_type_specifier • pointer IDENTIFIER OPEN_BRACKET parameter_list2 CLOSE_BRACKET $@10 compound_statement F
+  116                    | non_void_type_specifier • IDENTIFIER OPEN_BRACKET VOID CLOSE_BRACKET $@11 compound_statement F
+  118                    | non_void_type_specifier • pointer IDENTIFIER OPEN_BRACKET VOID CLOSE_BRACKET $@12 compound_statement F
+
+    MULT        shift, and go to state 9
+    IDENTIFIER  shift, and go to state 12
+
+    direct_declarator  go to state 13
+    declarator         go to state 14
+    pointer            go to state 15
+
+
+State 6
+
+    0 $accept: translation_unit • $end
+
+    $end  shift, and go to state 16
+
+
+State 7
+
+   79 translation_unit: function •
+   80                 | function • translation_unit
+
+    VOID  shift, and go to state 1
+    CHAR  shift, and go to state 2
+    INT   shift, and go to state 3
+
+    $default  reduce using rule 79 (translation_unit)
+
+    internal_declaration     go to state 4
+    non_void_type_specifier  go to state 5
+    translation_unit         go to state 17
+    function                 go to state 7
+    function_definition      go to state 8
+
+
+State 8
+
+   94 function: function_definition •
+
+    $default  reduce using rule 94 (function)
+
+
+State 9
+
+   53 pointer: MULT •
+
+    $default  reduce using rule 53 (pointer)
+
+
+State 10
+
+   83 function: VOID IDENTIFIER • OPEN_BRACKET CLOSE_BRACKET SEMI_COLON
+   84         | VOID IDENTIFIER • OPEN_BRACKET VOID CLOSE_BRACKET SEMI_COLON
+   86         | VOID IDENTIFIER • OPEN_BRACKET parameter_list2 CLOSE_BRACKET SEMI_COLON
+   96 function_definition: VOID IDENTIFIER • OPEN_BRACKET CLOSE_BRACKET $@1 compound_statement F
+  100                    | VOID IDENTIFIER • OPEN_BRACKET parameter_list2 CLOSE_BRACKET $@3 compound_statement F
+  104                    | VOID IDENTIFIER • OPEN_BRACKET VOID CLOSE_BRACKET $@5 compound_statement F
+
+    OPEN_BRACKET  shift, and go to state 18
+
+
+State 11
+
+   45 internal_declaration: VOID pointer • direct_declarator
+   82 function: VOID pointer • IDENTIFIER OPEN_BRACKET CLOSE_BRACKET SEMI_COLON
+   85         | VOID pointer • IDENTIFIER OPEN_BRACKET VOID CLOSE_BRACKET SEMI_COLON
+   87         | VOID pointer • IDENTIFIER OPEN_BRACKET parameter_list2 CLOSE_BRACKET SEMI_COLON
+   98 function_definition: VOID pointer • IDENTIFIER OPEN_BRACKET CLOSE_BRACKET $@2 compound_statement F
+  102                    | VOID pointer • IDENTIFIER OPEN_BRACKET parameter_list2 CLOSE_BRACKET $@4 compound_statement F
+  106                    | VOID pointer • IDENTIFIER OPEN_BRACKET VOID CLOSE_BRACKET $@6 compound_statement F
+
+    IDENTIFIER  shift, and go to state 19
+
+    direct_declarator  go to state 20
+
+
+State 12
+
+   46 direct_declarator: IDENTIFIER • OPEN_SQUARE_BRACKET INTEGER_CONSTANT CLOSE_SQUARE_BRACKET SEMI_COLON
+   47                  | IDENTIFIER • SEMI_COLON
+   48                  | IDENTIFIER • EQUAL initializer SEMI_COLON
+   89 function: non_void_type_specifier IDENTIFIER • OPEN_BRACKET CLOSE_BRACKET SEMI_COLON
+   90         | non_void_type_specifier IDENTIFIER • OPEN_BRACKET VOID CLOSE_BRACKET SEMI_COLON
+   92         | non_void_type_specifier IDENTIFIER • OPEN_BRACKET parameter_list2 CLOSE_BRACKET SEMI_COLON
+  108 function_definition: non_void_type_specifier IDENTIFIER • OPEN_BRACKET CLOSE_BRACKET $@7 compound_statement F
+  112                    | non_void_type_specifier IDENTIFIER • OPEN_BRACKET parameter_list2 CLOSE_BRACKET $@9 compound_statement F
+  116                    | non_void_type_specifier IDENTIFIER • OPEN_BRACKET VOID CLOSE_BRACKET $@11 compound_statement F
+
+    OPEN_SQUARE_BRACKET  shift, and go to state 21
+    OPEN_BRACKET         shift, and go to state 22
+    EQUAL                shift, and go to state 23
+    SEMI_COLON           shift, and go to state 24
+
+
+State 13
+
+   51 declarator: direct_declarator •
+
+    $default  reduce using rule 51 (declarator)
+
+
+State 14
+
+   44 internal_declaration: non_void_type_specifier declarator •
+
+    $default  reduce using rule 44 (internal_declaration)
+
+
+State 15
+
+   52 declarator: pointer • direct_declarator
+   88 function: non_void_type_specifier pointer • IDENTIFIER OPEN_BRACKET CLOSE_BRACKET SEMI_COLON
+   91         | non_void_type_specifier pointer • IDENTIFIER OPEN_BRACKET VOID CLOSE_BRACKET SEMI_COLON
+   93         | non_void_type_specifier pointer • IDENTIFIER OPEN_BRACKET parameter_list2 CLOSE_BRACKET SEMI_COLON
+  110 function_definition: non_void_type_specifier pointer • IDENTIFIER OPEN_BRACKET CLOSE_BRACKET $@8 compound_statement F
+  114                    | non_void_type_specifier pointer • IDENTIFIER OPEN_BRACKET parameter_list2 CLOSE_BRACKET $@10 compound_statement F
+  118                    | non_void_type_specifier pointer • IDENTIFIER OPEN_BRACKET VOID CLOSE_BRACKET $@12 compound_statement F
+
+    IDENTIFIER  shift, and go to state 25
+
+    direct_declarator  go to state 26
+
+
+State 16
+
+    0 $accept: translation_unit $end •
+
+    $default  accept
+
+
+State 17
+
+   80 translation_unit: function translation_unit •
+
+    $default  reduce using rule 80 (translation_unit)
+
+
+State 18
+
+   83 function: VOID IDENTIFIER OPEN_BRACKET • CLOSE_BRACKET SEMI_COLON
+   84         | VOID IDENTIFIER OPEN_BRACKET • VOID CLOSE_BRACKET SEMI_COLON
+   86         | VOID IDENTIFIER OPEN_BRACKET • parameter_list2 CLOSE_BRACKET SEMI_COLON
+   96 function_definition: VOID IDENTIFIER OPEN_BRACKET • CLOSE_BRACKET $@1 compound_statement F
+  100                    | VOID IDENTIFIER OPEN_BRACKET • parameter_list2 CLOSE_BRACKET $@3 compound_statement F
+  104                    | VOID IDENTIFIER OPEN_BRACKET • VOID CLOSE_BRACKET $@5 compound_statement F
+
+    VOID           shift, and go to state 27
+    CLOSE_BRACKET  shift, and go to state 28
+    CHAR           shift, and go to state 29
+    INT            shift, and go to state 30
+
+    non_void_type_specifier  go to state 31
+    parameter_list2          go to state 32
+    parameter_declaration2   go to state 33
+
+
+State 19
+
+   46 direct_declarator: IDENTIFIER • OPEN_SQUARE_BRACKET INTEGER_CONSTANT CLOSE_SQUARE_BRACKET SEMI_COLON
+   47                  | IDENTIFIER • SEMI_COLON
+   48                  | IDENTIFIER • EQUAL initializer SEMI_COLON
+   82 function: VOID pointer IDENTIFIER • OPEN_BRACKET CLOSE_BRACKET SEMI_COLON
+   85         | VOID pointer IDENTIFIER • OPEN_BRACKET VOID CLOSE_BRACKET SEMI_COLON
+   87         | VOID pointer IDENTIFIER • OPEN_BRACKET parameter_list2 CLOSE_BRACKET SEMI_COLON
+   98 function_definition: VOID pointer IDENTIFIER • OPEN_BRACKET CLOSE_BRACKET $@2 compound_statement F
+  102                    | VOID pointer IDENTIFIER • OPEN_BRACKET parameter_list2 CLOSE_BRACKET $@4 compound_statement F
+  106                    | VOID pointer IDENTIFIER • OPEN_BRACKET VOID CLOSE_BRACKET $@6 compound_statement F
+
+    OPEN_SQUARE_BRACKET  shift, and go to state 21
+    OPEN_BRACKET         shift, and go to state 34
+    EQUAL                shift, and go to state 23
+    SEMI_COLON           shift, and go to state 24
+
+
+State 20
+
+   45 internal_declaration: VOID pointer direct_declarator •
+
+    $default  reduce using rule 45 (internal_declaration)
+
+
+State 21
+
+   46 direct_declarator: IDENTIFIER OPEN_SQUARE_BRACKET • INTEGER_CONSTANT CLOSE_SQUARE_BRACKET SEMI_COLON
+
+    INTEGER_CONSTANT  shift, and go to state 35
+
+
+State 22
+
+   89 function: non_void_type_specifier IDENTIFIER OPEN_BRACKET • CLOSE_BRACKET SEMI_COLON
+   90         | non_void_type_specifier IDENTIFIER OPEN_BRACKET • VOID CLOSE_BRACKET SEMI_COLON
+   92         | non_void_type_specifier IDENTIFIER OPEN_BRACKET • parameter_list2 CLOSE_BRACKET SEMI_COLON
+  108 function_definition: non_void_type_specifier IDENTIFIER OPEN_BRACKET • CLOSE_BRACKET $@7 compound_statement F
+  112                    | non_void_type_specifier IDENTIFIER OPEN_BRACKET • parameter_list2 CLOSE_BRACKET $@9 compound_statement F
+  116                    | non_void_type_specifier IDENTIFIER OPEN_BRACKET • VOID CLOSE_BRACKET $@11 compound_statement F
+
+    VOID           shift, and go to state 36
+    CLOSE_BRACKET  shift, and go to state 37
+    CHAR           shift, and go to state 29
+    INT            shift, and go to state 30
+
+    non_void_type_specifier  go to state 31
+    parameter_list2          go to state 38
+    parameter_declaration2   go to state 33
+
+
+State 23
+
+   48 direct_declarator: IDENTIFIER EQUAL • initializer SEMI_COLON
+
+    OPEN_BRACKET      shift, and go to state 39
+    AND               shift, and go to state 40
+    MULT              shift, and go to state 41
+    ADD               shift, and go to state 42
+    SUB               shift, and go to state 43
+    NOT               shift, and go to state 44
+    IDENTIFIER        shift, and go to state 45
+    INTEGER_CONSTANT  shift, and go to state 46
+    CHAR_CONSTANT     shift, and go to state 47
+    STRING_LITERAL    shift, and go to state 48
+
+    primary_expression         go to state 49
+    postfix_expression         go to state 50
+    unary_expression           go to state 51
+    unary_operator             go to state 52
+    multiplicative_expression  go to state 53
+    additive_expression        go to state 54
+    relational_expression      go to state 55
+    equality_expression        go to state 56
+    logical_AND_expression     go to state 57
+    logical_OR_expression      go to state 58
+    conditional_expression     go to state 59
+    assignment_expression      go to state 60
+    initializer                go to state 61
+
+
+State 24
+
+   47 direct_declarator: IDENTIFIER SEMI_COLON •
+
+    $default  reduce using rule 47 (direct_declarator)
+
+
+State 25
+
+   46 direct_declarator: IDENTIFIER • OPEN_SQUARE_BRACKET INTEGER_CONSTANT CLOSE_SQUARE_BRACKET SEMI_COLON
+   47                  | IDENTIFIER • SEMI_COLON
+   48                  | IDENTIFIER • EQUAL initializer SEMI_COLON
+   88 function: non_void_type_specifier pointer IDENTIFIER • OPEN_BRACKET CLOSE_BRACKET SEMI_COLON
+   91         | non_void_type_specifier pointer IDENTIFIER • OPEN_BRACKET VOID CLOSE_BRACKET SEMI_COLON
+   93         | non_void_type_specifier pointer IDENTIFIER • OPEN_BRACKET parameter_list2 CLOSE_BRACKET SEMI_COLON
+  110 function_definition: non_void_type_specifier pointer IDENTIFIER • OPEN_BRACKET CLOSE_BRACKET $@8 compound_statement F
+  114                    | non_void_type_specifier pointer IDENTIFIER • OPEN_BRACKET parameter_list2 CLOSE_BRACKET $@10 compound_statement F
+  118                    | non_void_type_specifier pointer IDENTIFIER • OPEN_BRACKET VOID CLOSE_BRACKET $@12 compound_statement F
+
+    OPEN_SQUARE_BRACKET  shift, and go to state 21
+    OPEN_BRACKET         shift, and go to state 62
+    EQUAL                shift, and go to state 23
+    SEMI_COLON           shift, and go to state 24
+
+
+State 26
+
+   52 declarator: pointer direct_declarator •
+
+    $default  reduce using rule 52 (declarator)
+
+
+State 27
+
+   59 parameter_declaration2: VOID • pointer IDENTIFIER
+   84 function: VOID IDENTIFIER OPEN_BRACKET VOID • CLOSE_BRACKET SEMI_COLON
+  104 function_definition: VOID IDENTIFIER OPEN_BRACKET VOID • CLOSE_BRACKET $@5 compound_statement F
+
+    CLOSE_BRACKET  shift, and go to state 63
+    MULT           shift, and go to state 9
+
+    pointer  go to state 64
+
+
+State 28
+
+   83 function: VOID IDENTIFIER OPEN_BRACKET CLOSE_BRACKET • SEMI_COLON
+   96 function_definition: VOID IDENTIFIER OPEN_BRACKET CLOSE_BRACKET • $@1 compound_statement F
+
+    SEMI_COLON  shift, and go to state 65
+
+    $default  reduce using rule 95 ($@1)
+
+    $@1  go to state 66
+
+
+State 29
+
+   49 non_void_type_specifier: CHAR •
+   57 parameter_declaration2: CHAR • IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 67
+
+    $default  reduce using rule 49 (non_void_type_specifier)
+
+
+State 30
+
+   50 non_void_type_specifier: INT •
+   56 parameter_declaration2: INT • IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 68
+
+    $default  reduce using rule 50 (non_void_type_specifier)
+
+
+State 31
+
+   58 parameter_declaration2: non_void_type_specifier • pointer IDENTIFIER
+
+    MULT  shift, and go to state 9
+
+    pointer  go to state 69
+
+
+State 32
+
+   86 function: VOID IDENTIFIER OPEN_BRACKET parameter_list2 • CLOSE_BRACKET SEMI_COLON
+  100 function_definition: VOID IDENTIFIER OPEN_BRACKET parameter_list2 • CLOSE_BRACKET $@3 compound_statement F
+
+    CLOSE_BRACKET  shift, and go to state 70
+
+
+State 33
+
+   54 parameter_list2: parameter_declaration2 •
+   55                | parameter_declaration2 • COMMA parameter_list2
+
+    COMMA  shift, and go to state 71
+
+    $default  reduce using rule 54 (parameter_list2)
+
+
+State 34
+
+   82 function: VOID pointer IDENTIFIER OPEN_BRACKET • CLOSE_BRACKET SEMI_COLON
+   85         | VOID pointer IDENTIFIER OPEN_BRACKET • VOID CLOSE_BRACKET SEMI_COLON
+   87         | VOID pointer IDENTIFIER OPEN_BRACKET • parameter_list2 CLOSE_BRACKET SEMI_COLON
+   98 function_definition: VOID pointer IDENTIFIER OPEN_BRACKET • CLOSE_BRACKET $@2 compound_statement F
+  102                    | VOID pointer IDENTIFIER OPEN_BRACKET • parameter_list2 CLOSE_BRACKET $@4 compound_statement F
+  106                    | VOID pointer IDENTIFIER OPEN_BRACKET • VOID CLOSE_BRACKET $@6 compound_statement F
+
+    VOID           shift, and go to state 72
+    CLOSE_BRACKET  shift, and go to state 73
+    CHAR           shift, and go to state 29
+    INT            shift, and go to state 30
+
+    non_void_type_specifier  go to state 31
+    parameter_list2          go to state 74
+    parameter_declaration2   go to state 33
+
+
+State 35
+
+   46 direct_declarator: IDENTIFIER OPEN_SQUARE_BRACKET INTEGER_CONSTANT • CLOSE_SQUARE_BRACKET SEMI_COLON
+
+    CLOSE_SQUARE_BRACKET  shift, and go to state 75
+
+
+State 36
+
+   59 parameter_declaration2: VOID • pointer IDENTIFIER
+   90 function: non_void_type_specifier IDENTIFIER OPEN_BRACKET VOID • CLOSE_BRACKET SEMI_COLON
+  116 function_definition: non_void_type_specifier IDENTIFIER OPEN_BRACKET VOID • CLOSE_BRACKET $@11 compound_statement F
+
+    CLOSE_BRACKET  shift, and go to state 76
+    MULT           shift, and go to state 9
+
+    pointer  go to state 64
+
+
+State 37
+
+   89 function: non_void_type_specifier IDENTIFIER OPEN_BRACKET CLOSE_BRACKET • SEMI_COLON
+  108 function_definition: non_void_type_specifier IDENTIFIER OPEN_BRACKET CLOSE_BRACKET • $@7 compound_statement F
+
+    SEMI_COLON  shift, and go to state 77
+
+    $default  reduce using rule 107 ($@7)
+
+    $@7  go to state 78
+
+
+State 38
+
+   92 function: non_void_type_specifier IDENTIFIER OPEN_BRACKET parameter_list2 • CLOSE_BRACKET SEMI_COLON
+  112 function_definition: non_void_type_specifier IDENTIFIER OPEN_BRACKET parameter_list2 • CLOSE_BRACKET $@9 compound_statement F
+
+    CLOSE_BRACKET  shift, and go to state 79
+
+
+State 39
+
+    5 primary_expression: OPEN_BRACKET • expression CLOSE_BRACKET
+
+    OPEN_BRACKET      shift, and go to state 39
+    AND               shift, and go to state 40
+    MULT              shift, and go to state 41
+    ADD               shift, and go to state 42
+    SUB               shift, and go to state 43
+    NOT               shift, and go to state 44
+    IDENTIFIER        shift, and go to state 45
+    INTEGER_CONSTANT  shift, and go to state 46
+    CHAR_CONSTANT     shift, and go to state 47
+    STRING_LITERAL    shift, and go to state 48
+
+    primary_expression         go to state 49
+    postfix_expression         go to state 50
+    unary_expression           go to state 51
+    unary_operator             go to state 52
+    multiplicative_expression  go to state 53
+    additive_expression        go to state 54
+    relational_expression      go to state 55
+    equality_expression        go to state 56
+    logical_AND_expression     go to state 57
+    logical_OR_expression      go to state 58
+    conditional_expression     go to state 59
+    assignment_expression      go to state 80
+    expression                 go to state 81
+
+
+State 40
+
+   15 unary_operator: AND •
+
+    $default  reduce using rule 15 (unary_operator)
+
+
+State 41
+
+   16 unary_operator: MULT •
+
+    $default  reduce using rule 16 (unary_operator)
+
+
+State 42
+
+   17 unary_operator: ADD •
+
+    $default  reduce using rule 17 (unary_operator)
+
+
+State 43
+
+   18 unary_operator: SUB •
+
+    $default  reduce using rule 18 (unary_operator)
+
+
+State 44
+
+   19 unary_operator: NOT •
+
+    $default  reduce using rule 19 (unary_operator)
+
+
+State 45
+
+    1 primary_expression: IDENTIFIER •
+
+    $default  reduce using rule 1 (primary_expression)
+
+
+State 46
+
+    2 primary_expression: INTEGER_CONSTANT •
+
+    $default  reduce using rule 2 (primary_expression)
+
+
+State 47
+
+    3 primary_expression: CHAR_CONSTANT •
+
+    $default  reduce using rule 3 (primary_expression)
+
+
+State 48
+
+    4 primary_expression: STRING_LITERAL •
+
+    $default  reduce using rule 4 (primary_expression)
+
+
+State 49
+
+    6 postfix_expression: primary_expression •
+
+    $default  reduce using rule 6 (postfix_expression)
+
+
+State 50
+
+    7 postfix_expression: postfix_expression • OPEN_SQUARE_BRACKET expression CLOSE_SQUARE_BRACKET
+    8                   | postfix_expression • OPEN_BRACKET CLOSE_BRACKET
+    9                   | postfix_expression • OPEN_BRACKET argument_expression_list CLOSE_BRACKET
+   10                   | postfix_expression • POINTER_INDIRECTION IDENTIFIER
+   13 unary_expression: postfix_expression •
+
+    POINTER_INDIRECTION  shift, and go to state 82
+    OPEN_SQUARE_BRACKET  shift, and go to state 83
+    OPEN_BRACKET         shift, and go to state 84
+
+    $default  reduce using rule 13 (unary_expression)
+
+
+State 51
+
+   20 multiplicative_expression: unary_expression •
+   42 assignment_expression: unary_expression • EQUAL assignment_expression
+
+    EQUAL  shift, and go to state 85
+
+    $default  reduce using rule 20 (multiplicative_expression)
+
+
+State 52
+
+   14 unary_expression: unary_operator • O unary_expression
+
+    $default  reduce using rule 121 (O)
+
+    O  go to state 86
+
+
+State 53
+
+   21 multiplicative_expression: multiplicative_expression • MULT unary_expression
+   22                          | multiplicative_expression • DIVIDE unary_expression
+   23                          | multiplicative_expression • REMAINDER unary_expression
+   24 additive_expression: multiplicative_expression •
+
+    MULT       shift, and go to state 87
+    DIVIDE     shift, and go to state 88
+    REMAINDER  shift, and go to state 89
+
+    $default  reduce using rule 24 (additive_expression)
+
+
+State 54
+
+   25 additive_expression: additive_expression • ADD multiplicative_expression
+   26                    | additive_expression • SUB multiplicative_expression
+   27 relational_expression: additive_expression •
+
+    ADD  shift, and go to state 90
+    SUB  shift, and go to state 91
+
+    $default  reduce using rule 27 (relational_expression)
+
+
+State 55
+
+   28 relational_expression: relational_expression • LESS_THAN additive_expression
+   29                      | relational_expression • GREATER_THAN additive_expression
+   30                      | relational_expression • LESS_THAN_OR_EQUAL additive_expression
+   31                      | relational_expression • GREATER_THAN_OR_EQUAL additive_expression
+   32 equality_expression: relational_expression •
+
+    LESS_THAN_OR_EQUAL     shift, and go to state 92
+    GREATER_THAN_OR_EQUAL  shift, and go to state 93
+    LESS_THAN              shift, and go to state 94
+    GREATER_THAN           shift, and go to state 95
+
+    $default  reduce using rule 32 (equality_expression)
+
+
+State 56
+
+   33 equality_expression: equality_expression • EQUAL_TO relational_expression
+   34                    | equality_expression • NOT_EQUAL_TO relational_expression
+   35 logical_AND_expression: equality_expression •
+
+    EQUAL_TO      shift, and go to state 96
+    NOT_EQUAL_TO  shift, and go to state 97
+
+    $default  reduce using rule 35 (logical_AND_expression)
+
+
+State 57
+
+   36 logical_AND_expression: logical_AND_expression • LOGICAL_AND M equality_expression
+   37 logical_OR_expression: logical_AND_expression •
+
+    LOGICAL_AND  shift, and go to state 98
+
+    $default  reduce using rule 37 (logical_OR_expression)
+
+
+State 58
+
+   38 logical_OR_expression: logical_OR_expression • LOGICAL_OR M logical_AND_expression
+   39 conditional_expression: logical_OR_expression •
+   40                       | logical_OR_expression • N QUESTION_MARK M expression N COLON M conditional_expression
+
+    LOGICAL_OR  shift, and go to state 99
+
+    QUESTION_MARK  reduce using rule 120 (N)
+    $default       reduce using rule 39 (conditional_expression)
+
+    N  go to state 100
+
+
+State 59
+
+   41 assignment_expression: conditional_expression •
+
+    $default  reduce using rule 41 (assignment_expression)
+
+
+State 60
+
+   60 initializer: assignment_expression •
+
+    $default  reduce using rule 60 (initializer)
+
+
+State 61
+
+   48 direct_declarator: IDENTIFIER EQUAL initializer • SEMI_COLON
+
+    SEMI_COLON  shift, and go to state 101
+
+
+State 62
+
+   88 function: non_void_type_specifier pointer IDENTIFIER OPEN_BRACKET • CLOSE_BRACKET SEMI_COLON
+   91         | non_void_type_specifier pointer IDENTIFIER OPEN_BRACKET • VOID CLOSE_BRACKET SEMI_COLON
+   93         | non_void_type_specifier pointer IDENTIFIER OPEN_BRACKET • parameter_list2 CLOSE_BRACKET SEMI_COLON
+  110 function_definition: non_void_type_specifier pointer IDENTIFIER OPEN_BRACKET • CLOSE_BRACKET $@8 compound_statement F
+  114                    | non_void_type_specifier pointer IDENTIFIER OPEN_BRACKET • parameter_list2 CLOSE_BRACKET $@10 compound_statement F
+  118                    | non_void_type_specifier pointer IDENTIFIER OPEN_BRACKET • VOID CLOSE_BRACKET $@12 compound_statement F
+
+    VOID           shift, and go to state 102
+    CLOSE_BRACKET  shift, and go to state 103
+    CHAR           shift, and go to state 29
+    INT            shift, and go to state 30
+
+    non_void_type_specifier  go to state 31
+    parameter_list2          go to state 104
+    parameter_declaration2   go to state 33
+
+
+State 63
+
+   84 function: VOID IDENTIFIER OPEN_BRACKET VOID CLOSE_BRACKET • SEMI_COLON
+  104 function_definition: VOID IDENTIFIER OPEN_BRACKET VOID CLOSE_BRACKET • $@5 compound_statement F
+
+    SEMI_COLON  shift, and go to state 105
+
+    $default  reduce using rule 103 ($@5)
+
+    $@5  go to state 106
+
+
+State 64
+
+   59 parameter_declaration2: VOID pointer • IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 107
+
+
+State 65
+
+   83 function: VOID IDENTIFIER OPEN_BRACKET CLOSE_BRACKET SEMI_COLON •
+
+    $default  reduce using rule 83 (function)
+
+
+State 66
+
+   96 function_definition: VOID IDENTIFIER OPEN_BRACKET CLOSE_BRACKET $@1 • compound_statement F
+
+    OPEN_FLOWER_BRACKET  shift, and go to state 108
+
+    compound_statement  go to state 109
+
+
+State 67
+
+   57 parameter_declaration2: CHAR IDENTIFIER •
+
+    $default  reduce using rule 57 (parameter_declaration2)
+
+
+State 68
+
+   56 parameter_declaration2: INT IDENTIFIER •
+
+    $default  reduce using rule 56 (parameter_declaration2)
+
+
+State 69
+
+   58 parameter_declaration2: non_void_type_specifier pointer • IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 110
+
+
+State 70
+
+   86 function: VOID IDENTIFIER OPEN_BRACKET parameter_list2 CLOSE_BRACKET • SEMI_COLON
+  100 function_definition: VOID IDENTIFIER OPEN_BRACKET parameter_list2 CLOSE_BRACKET • $@3 compound_statement F
+
+    SEMI_COLON  shift, and go to state 111
+
+    $default  reduce using rule 99 ($@3)
+
+    $@3  go to state 112
+
+
+State 71
+
+   55 parameter_list2: parameter_declaration2 COMMA • parameter_list2
+
+    VOID  shift, and go to state 113
+    CHAR  shift, and go to state 29
+    INT   shift, and go to state 30
+
+    non_void_type_specifier  go to state 31
+    parameter_list2          go to state 114
+    parameter_declaration2   go to state 33
+
+
+State 72
+
+   59 parameter_declaration2: VOID • pointer IDENTIFIER
+   85 function: VOID pointer IDENTIFIER OPEN_BRACKET VOID • CLOSE_BRACKET SEMI_COLON
+  106 function_definition: VOID pointer IDENTIFIER OPEN_BRACKET VOID • CLOSE_BRACKET $@6 compound_statement F
+
+    CLOSE_BRACKET  shift, and go to state 115
+    MULT           shift, and go to state 9
+
+    pointer  go to state 64
+
+
+State 73
+
+   82 function: VOID pointer IDENTIFIER OPEN_BRACKET CLOSE_BRACKET • SEMI_COLON
+   98 function_definition: VOID pointer IDENTIFIER OPEN_BRACKET CLOSE_BRACKET • $@2 compound_statement F
+
+    SEMI_COLON  shift, and go to state 116
+
+    $default  reduce using rule 97 ($@2)
+
+    $@2  go to state 117
+
+
+State 74
+
+   87 function: VOID pointer IDENTIFIER OPEN_BRACKET parameter_list2 • CLOSE_BRACKET SEMI_COLON
+  102 function_definition: VOID pointer IDENTIFIER OPEN_BRACKET parameter_list2 • CLOSE_BRACKET $@4 compound_statement F
+
+    CLOSE_BRACKET  shift, and go to state 118
+
+
+State 75
+
+   46 direct_declarator: IDENTIFIER OPEN_SQUARE_BRACKET INTEGER_CONSTANT CLOSE_SQUARE_BRACKET • SEMI_COLON
+
+    SEMI_COLON  shift, and go to state 119
+
+
+State 76
+
+   90 function: non_void_type_specifier IDENTIFIER OPEN_BRACKET VOID CLOSE_BRACKET • SEMI_COLON
+  116 function_definition: non_void_type_specifier IDENTIFIER OPEN_BRACKET VOID CLOSE_BRACKET • $@11 compound_statement F
+
+    SEMI_COLON  shift, and go to state 120
+
+    $default  reduce using rule 115 ($@11)
+
+    $@11  go to state 121
+
+
+State 77
+
+   89 function: non_void_type_specifier IDENTIFIER OPEN_BRACKET CLOSE_BRACKET SEMI_COLON •
+
+    $default  reduce using rule 89 (function)
+
+
+State 78
+
+  108 function_definition: non_void_type_specifier IDENTIFIER OPEN_BRACKET CLOSE_BRACKET $@7 • compound_statement F
+
+    OPEN_FLOWER_BRACKET  shift, and go to state 108
+
+    compound_statement  go to state 122
+
+
+State 79
+
+   92 function: non_void_type_specifier IDENTIFIER OPEN_BRACKET parameter_list2 CLOSE_BRACKET • SEMI_COLON
+  112 function_definition: non_void_type_specifier IDENTIFIER OPEN_BRACKET parameter_list2 CLOSE_BRACKET • $@9 compound_statement F
+
+    SEMI_COLON  shift, and go to state 123
+
+    $default  reduce using rule 111 ($@9)
+
+    $@9  go to state 124
+
+
+State 80
+
+   43 expression: assignment_expression •
+
+    $default  reduce using rule 43 (expression)
+
+
+State 81
+
+    5 primary_expression: OPEN_BRACKET expression • CLOSE_BRACKET
+
+    CLOSE_BRACKET  shift, and go to state 125
+
+
+State 82
+
+   10 postfix_expression: postfix_expression POINTER_INDIRECTION • IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 126
+
+
+State 83
+
+    7 postfix_expression: postfix_expression OPEN_SQUARE_BRACKET • expression CLOSE_SQUARE_BRACKET
+
+    OPEN_BRACKET      shift, and go to state 39
+    AND               shift, and go to state 40
+    MULT              shift, and go to state 41
+    ADD               shift, and go to state 42
+    SUB               shift, and go to state 43
+    NOT               shift, and go to state 44
+    IDENTIFIER        shift, and go to state 45
+    INTEGER_CONSTANT  shift, and go to state 46
+    CHAR_CONSTANT     shift, and go to state 47
+    STRING_LITERAL    shift, and go to state 48
+
+    primary_expression         go to state 49
+    postfix_expression         go to state 50
+    unary_expression           go to state 51
+    unary_operator             go to state 52
+    multiplicative_expression  go to state 53
+    additive_expression        go to state 54
+    relational_expression      go to state 55
+    equality_expression        go to state 56
+    logical_AND_expression     go to state 57
+    logical_OR_expression      go to state 58
+    conditional_expression     go to state 59
+    assignment_expression      go to state 80
+    expression                 go to state 127
+
+
+State 84
+
+    8 postfix_expression: postfix_expression OPEN_BRACKET • CLOSE_BRACKET
+    9                   | postfix_expression OPEN_BRACKET • argument_expression_list CLOSE_BRACKET
+
+    OPEN_BRACKET      shift, and go to state 39
+    CLOSE_BRACKET     shift, and go to state 128
+    AND               shift, and go to state 40
+    MULT              shift, and go to state 41
+    ADD               shift, and go to state 42
+    SUB               shift, and go to state 43
+    NOT               shift, and go to state 44
+    IDENTIFIER        shift, and go to state 45
+    INTEGER_CONSTANT  shift, and go to state 46
+    CHAR_CONSTANT     shift, and go to state 47
+    STRING_LITERAL    shift, and go to state 48
+
+    primary_expression         go to state 49
+    postfix_expression         go to state 50
+    argument_expression_list   go to state 129
+    unary_expression           go to state 51
+    unary_operator             go to state 52
+    multiplicative_expression  go to state 53
+    additive_expression        go to state 54
+    relational_expression      go to state 55
+    equality_expression        go to state 56
+    logical_AND_expression     go to state 57
+    logical_OR_expression      go to state 58
+    conditional_expression     go to state 59
+    assignment_expression      go to state 130
+
+
+State 85
+
+   42 assignment_expression: unary_expression EQUAL • assignment_expression
+
+    OPEN_BRACKET      shift, and go to state 39
+    AND               shift, and go to state 40
+    MULT              shift, and go to state 41
+    ADD               shift, and go to state 42
+    SUB               shift, and go to state 43
+    NOT               shift, and go to state 44
+    IDENTIFIER        shift, and go to state 45
+    INTEGER_CONSTANT  shift, and go to state 46
+    CHAR_CONSTANT     shift, and go to state 47
+    STRING_LITERAL    shift, and go to state 48
+
+    primary_expression         go to state 49
+    postfix_expression         go to state 50
+    unary_expression           go to state 51
+    unary_operator             go to state 52
+    multiplicative_expression  go to state 53
+    additive_expression        go to state 54
+    relational_expression      go to state 55
+    equality_expression        go to state 56
+    logical_AND_expression     go to state 57
+    logical_OR_expression      go to state 58
+    conditional_expression     go to state 59
+    assignment_expression      go to state 131
+
+
+State 86
+
+   14 unary_expression: unary_operator O • unary_expression
+
+    OPEN_BRACKET      shift, and go to state 39
+    AND               shift, and go to state 40
+    MULT              shift, and go to state 41
+    ADD               shift, and go to state 42
+    SUB               shift, and go to state 43
+    NOT               shift, and go to state 44
+    IDENTIFIER        shift, and go to state 45
+    INTEGER_CONSTANT  shift, and go to state 46
+    CHAR_CONSTANT     shift, and go to state 47
+    STRING_LITERAL    shift, and go to state 48
+
+    primary_expression  go to state 49
+    postfix_expression  go to state 50
+    unary_expression    go to state 132
+    unary_operator      go to state 52
+
+
+State 87
+
+   21 multiplicative_expression: multiplicative_expression MULT • unary_expression
+
+    OPEN_BRACKET      shift, and go to state 39
+    AND               shift, and go to state 40
+    MULT              shift, and go to state 41
+    ADD               shift, and go to state 42
+    SUB               shift, and go to state 43
+    NOT               shift, and go to state 44
+    IDENTIFIER        shift, and go to state 45
+    INTEGER_CONSTANT  shift, and go to state 46
+    CHAR_CONSTANT     shift, and go to state 47
+    STRING_LITERAL    shift, and go to state 48
+
+    primary_expression  go to state 49
+    postfix_expression  go to state 50
+    unary_expression    go to state 133
+    unary_operator      go to state 52
+
+
+State 88
+
+   22 multiplicative_expression: multiplicative_expression DIVIDE • unary_expression
+
+    OPEN_BRACKET      shift, and go to state 39
+    AND               shift, and go to state 40
+    MULT              shift, and go to state 41
+    ADD               shift, and go to state 42
+    SUB               shift, and go to state 43
+    NOT               shift, and go to state 44
+    IDENTIFIER        shift, and go to state 45
+    INTEGER_CONSTANT  shift, and go to state 46
+    CHAR_CONSTANT     shift, and go to state 47
+    STRING_LITERAL    shift, and go to state 48
+
+    primary_expression  go to state 49
+    postfix_expression  go to state 50
+    unary_expression    go to state 134
+    unary_operator      go to state 52
+
+
+State 89
+
+   23 multiplicative_expression: multiplicative_expression REMAINDER • unary_expression
+
+    OPEN_BRACKET      shift, and go to state 39
+    AND               shift, and go to state 40
+    MULT              shift, and go to state 41
+    ADD               shift, and go to state 42
+    SUB               shift, and go to state 43
+    NOT               shift, and go to state 44
+    IDENTIFIER        shift, and go to state 45
+    INTEGER_CONSTANT  shift, and go to state 46
+    CHAR_CONSTANT     shift, and go to state 47
+    STRING_LITERAL    shift, and go to state 48
+
+    primary_expression  go to state 49
+    postfix_expression  go to state 50
+    unary_expression    go to state 135
+    unary_operator      go to state 52
+
+
+State 90
+
+   25 additive_expression: additive_expression ADD • multiplicative_expression
+
+    OPEN_BRACKET      shift, and go to state 39
+    AND               shift, and go to state 40
+    MULT              shift, and go to state 41
+    ADD               shift, and go to state 42
+    SUB               shift, and go to state 43
+    NOT               shift, and go to state 44
+    IDENTIFIER        shift, and go to state 45
+    INTEGER_CONSTANT  shift, and go to state 46
+    CHAR_CONSTANT     shift, and go to state 47
+    STRING_LITERAL    shift, and go to state 48
+
+    primary_expression         go to state 49
+    postfix_expression         go to state 50
+    unary_expression           go to state 136
+    unary_operator             go to state 52
+    multiplicative_expression  go to state 137
+
+
+State 91
+
+   26 additive_expression: additive_expression SUB • multiplicative_expression
+
+    OPEN_BRACKET      shift, and go to state 39
+    AND               shift, and go to state 40
+    MULT              shift, and go to state 41
+    ADD               shift, and go to state 42
+    SUB               shift, and go to state 43
+    NOT               shift, and go to state 44
+    IDENTIFIER        shift, and go to state 45
+    INTEGER_CONSTANT  shift, and go to state 46
+    CHAR_CONSTANT     shift, and go to state 47
+    STRING_LITERAL    shift, and go to state 48
+
+    primary_expression         go to state 49
+    postfix_expression         go to state 50
+    unary_expression           go to state 136
+    unary_operator             go to state 52
+    multiplicative_expression  go to state 138
+
+
+State 92
+
+   30 relational_expression: relational_expression LESS_THAN_OR_EQUAL • additive_expression
+
+    OPEN_BRACKET      shift, and go to state 39
+    AND               shift, and go to state 40
+    MULT              shift, and go to state 41
+    ADD               shift, and go to state 42
+    SUB               shift, and go to state 43
+    NOT               shift, and go to state 44
+    IDENTIFIER        shift, and go to state 45
+    INTEGER_CONSTANT  shift, and go to state 46
+    CHAR_CONSTANT     shift, and go to state 47
+    STRING_LITERAL    shift, and go to state 48
+
+    primary_expression         go to state 49
+    postfix_expression         go to state 50
+    unary_expression           go to state 136
+    unary_operator             go to state 52
+    multiplicative_expression  go to state 53
+    additive_expression        go to state 139
+
+
+State 93
+
+   31 relational_expression: relational_expression GREATER_THAN_OR_EQUAL • additive_expression
+
+    OPEN_BRACKET      shift, and go to state 39
+    AND               shift, and go to state 40
+    MULT              shift, and go to state 41
+    ADD               shift, and go to state 42
+    SUB               shift, and go to state 43
+    NOT               shift, and go to state 44
+    IDENTIFIER        shift, and go to state 45
+    INTEGER_CONSTANT  shift, and go to state 46
+    CHAR_CONSTANT     shift, and go to state 47
+    STRING_LITERAL    shift, and go to state 48
+
+    primary_expression         go to state 49
+    postfix_expression         go to state 50
+    unary_expression           go to state 136
+    unary_operator             go to state 52
+    multiplicative_expression  go to state 53
+    additive_expression        go to state 140
+
+
+State 94
+
+   28 relational_expression: relational_expression LESS_THAN • additive_expression
+
+    OPEN_BRACKET      shift, and go to state 39
+    AND               shift, and go to state 40
+    MULT              shift, and go to state 41
+    ADD               shift, and go to state 42
+    SUB               shift, and go to state 43
+    NOT               shift, and go to state 44
+    IDENTIFIER        shift, and go to state 45
+    INTEGER_CONSTANT  shift, and go to state 46
+    CHAR_CONSTANT     shift, and go to state 47
+    STRING_LITERAL    shift, and go to state 48
+
+    primary_expression         go to state 49
+    postfix_expression         go to state 50
+    unary_expression           go to state 136
+    unary_operator             go to state 52
+    multiplicative_expression  go to state 53
+    additive_expression        go to state 141
+
+
+State 95
+
+   29 relational_expression: relational_expression GREATER_THAN • additive_expression
+
+    OPEN_BRACKET      shift, and go to state 39
+    AND               shift, and go to state 40
+    MULT              shift, and go to state 41
+    ADD               shift, and go to state 42
+    SUB               shift, and go to state 43
+    NOT               shift, and go to state 44
+    IDENTIFIER        shift, and go to state 45
+    INTEGER_CONSTANT  shift, and go to state 46
+    CHAR_CONSTANT     shift, and go to state 47
+    STRING_LITERAL    shift, and go to state 48
+
+    primary_expression         go to state 49
+    postfix_expression         go to state 50
+    unary_expression           go to state 136
+    unary_operator             go to state 52
+    multiplicative_expression  go to state 53
+    additive_expression        go to state 142
+
+
+State 96
+
+   33 equality_expression: equality_expression EQUAL_TO • relational_expression
+
+    OPEN_BRACKET      shift, and go to state 39
+    AND               shift, and go to state 40
+    MULT              shift, and go to state 41
+    ADD               shift, and go to state 42
+    SUB               shift, and go to state 43
+    NOT               shift, and go to state 44
+    IDENTIFIER        shift, and go to state 45
+    INTEGER_CONSTANT  shift, and go to state 46
+    CHAR_CONSTANT     shift, and go to state 47
+    STRING_LITERAL    shift, and go to state 48
+
+    primary_expression         go to state 49
+    postfix_expression         go to state 50
+    unary_expression           go to state 136
+    unary_operator             go to state 52
+    multiplicative_expression  go to state 53
+    additive_expression        go to state 54
+    relational_expression      go to state 143
+
+
+State 97
+
+   34 equality_expression: equality_expression NOT_EQUAL_TO • relational_expression
+
+    OPEN_BRACKET      shift, and go to state 39
+    AND               shift, and go to state 40
+    MULT              shift, and go to state 41
+    ADD               shift, and go to state 42
+    SUB               shift, and go to state 43
+    NOT               shift, and go to state 44
+    IDENTIFIER        shift, and go to state 45
+    INTEGER_CONSTANT  shift, and go to state 46
+    CHAR_CONSTANT     shift, and go to state 47
+    STRING_LITERAL    shift, and go to state 48
+
+    primary_expression         go to state 49
+    postfix_expression         go to state 50
+    unary_expression           go to state 136
+    unary_operator             go to state 52
+    multiplicative_expression  go to state 53
+    additive_expression        go to state 54
+    relational_expression      go to state 144
+
+
+State 98
+
+   36 logical_AND_expression: logical_AND_expression LOGICAL_AND • M equality_expression
+
+    $default  reduce using rule 119 (M)
+
+    M  go to state 145
+
+
+State 99
+
+   38 logical_OR_expression: logical_OR_expression LOGICAL_OR • M logical_AND_expression
+
+    $default  reduce using rule 119 (M)
+
+    M  go to state 146
+
+
+State 100
+
+   40 conditional_expression: logical_OR_expression N • QUESTION_MARK M expression N COLON M conditional_expression
+
+    QUESTION_MARK  shift, and go to state 147
+
+
+State 101
+
+   48 direct_declarator: IDENTIFIER EQUAL initializer SEMI_COLON •
+
+    $default  reduce using rule 48 (direct_declarator)
+
+
+State 102
+
+   59 parameter_declaration2: VOID • pointer IDENTIFIER
+   91 function: non_void_type_specifier pointer IDENTIFIER OPEN_BRACKET VOID • CLOSE_BRACKET SEMI_COLON
+  118 function_definition: non_void_type_specifier pointer IDENTIFIER OPEN_BRACKET VOID • CLOSE_BRACKET $@12 compound_statement F
+
+    CLOSE_BRACKET  shift, and go to state 148
+    MULT           shift, and go to state 9
+
+    pointer  go to state 64
+
+
+State 103
+
+   88 function: non_void_type_specifier pointer IDENTIFIER OPEN_BRACKET CLOSE_BRACKET • SEMI_COLON
+  110 function_definition: non_void_type_specifier pointer IDENTIFIER OPEN_BRACKET CLOSE_BRACKET • $@8 compound_statement F
+
+    SEMI_COLON  shift, and go to state 149
+
+    $default  reduce using rule 109 ($@8)
+
+    $@8  go to state 150
+
+
+State 104
+
+   93 function: non_void_type_specifier pointer IDENTIFIER OPEN_BRACKET parameter_list2 • CLOSE_BRACKET SEMI_COLON
+  114 function_definition: non_void_type_specifier pointer IDENTIFIER OPEN_BRACKET parameter_list2 • CLOSE_BRACKET $@10 compound_statement F
+
+    CLOSE_BRACKET  shift, and go to state 151
+
+
+State 105
+
+   84 function: VOID IDENTIFIER OPEN_BRACKET VOID CLOSE_BRACKET SEMI_COLON •
+
+    $default  reduce using rule 84 (function)
+
+
+State 106
+
+  104 function_definition: VOID IDENTIFIER OPEN_BRACKET VOID CLOSE_BRACKET $@5 • compound_statement F
+
+    OPEN_FLOWER_BRACKET  shift, and go to state 108
+
+    compound_statement  go to state 152
+
+
+State 107
+
+   59 parameter_declaration2: VOID pointer IDENTIFIER •
+
+    $default  reduce using rule 59 (parameter_declaration2)
+
+
+State 108
+
+   66 compound_statement: OPEN_FLOWER_BRACKET • CLOSE_FLOWER_BRACKET
+   67                   | OPEN_FLOWER_BRACKET • block_item_list CLOSE_FLOWER_BRACKET
+
+    VOID                  shift, and go to state 153
+    IF                    shift, and go to state 154
+    FOR                   shift, and go to state 155
+    RETURN                shift, and go to state 156
+    OPEN_BRACKET          shift, and go to state 39
+    OPEN_FLOWER_BRACKET   shift, and go to state 108
+    CLOSE_FLOWER_BRACKET  shift, and go to state 157
+    AND                   shift, and go to state 40
+    MULT                  shift, and go to state 41
+    ADD                   shift, and go to state 42
+    SUB                   shift, and go to state 43
+    NOT                   shift, and go to state 44
+    SEMI_COLON            shift, and go to state 158
+    CHAR                  shift, and go to state 2
+    INT                   shift, and go to state 3
+    IDENTIFIER            shift, and go to state 45
+    INTEGER_CONSTANT      shift, and go to state 46
+    CHAR_CONSTANT         shift, and go to state 47
+    STRING_LITERAL        shift, and go to state 48
+
+    primary_expression         go to state 49
+    postfix_expression         go to state 50
+    unary_expression           go to state 51
+    unary_operator             go to state 52
+    multiplicative_expression  go to state 53
+    additive_expression        go to state 54
+    relational_expression      go to state 55
+    equality_expression        go to state 56
+    logical_AND_expression     go to state 57
+    logical_OR_expression      go to state 58
+    conditional_expression     go to state 59
+    assignment_expression      go to state 80
+    expression                 go to state 159
+    internal_declaration       go to state 160
+    non_void_type_specifier    go to state 161
+    statement                  go to state 162
+    compound_statement         go to state 163
+    block_item_list            go to state 164
+    block_item                 go to state 165
+    expression_statement       go to state 166
+    selection_statement        go to state 167
+    iteration_statement        go to state 168
+    jump_statement             go to state 169
+
+
+State 109
+
+   96 function_definition: VOID IDENTIFIER OPEN_BRACKET CLOSE_BRACKET $@1 compound_statement • F
+
+    $default  reduce using rule 122 (F)
+
+    F  go to state 170
+
+
+State 110
+
+   58 parameter_declaration2: non_void_type_specifier pointer IDENTIFIER •
+
+    $default  reduce using rule 58 (parameter_declaration2)
+
+
+State 111
+
+   86 function: VOID IDENTIFIER OPEN_BRACKET parameter_list2 CLOSE_BRACKET SEMI_COLON •
+
+    $default  reduce using rule 86 (function)
+
+
+State 112
+
+  100 function_definition: VOID IDENTIFIER OPEN_BRACKET parameter_list2 CLOSE_BRACKET $@3 • compound_statement F
+
+    OPEN_FLOWER_BRACKET  shift, and go to state 108
+
+    compound_statement  go to state 171
+
+
+State 113
+
+   59 parameter_declaration2: VOID • pointer IDENTIFIER
+
+    MULT  shift, and go to state 9
+
+    pointer  go to state 64
+
+
+State 114
+
+   55 parameter_list2: parameter_declaration2 COMMA parameter_list2 •
+
+    $default  reduce using rule 55 (parameter_list2)
+
+
+State 115
+
+   85 function: VOID pointer IDENTIFIER OPEN_BRACKET VOID CLOSE_BRACKET • SEMI_COLON
+  106 function_definition: VOID pointer IDENTIFIER OPEN_BRACKET VOID CLOSE_BRACKET • $@6 compound_statement F
+
+    SEMI_COLON  shift, and go to state 172
+
+    $default  reduce using rule 105 ($@6)
+
+    $@6  go to state 173
+
+
+State 116
+
+   82 function: VOID pointer IDENTIFIER OPEN_BRACKET CLOSE_BRACKET SEMI_COLON •
+
+    $default  reduce using rule 82 (function)
+
+
+State 117
+
+   98 function_definition: VOID pointer IDENTIFIER OPEN_BRACKET CLOSE_BRACKET $@2 • compound_statement F
+
+    OPEN_FLOWER_BRACKET  shift, and go to state 108
+
+    compound_statement  go to state 174
+
+
+State 118
+
+   87 function: VOID pointer IDENTIFIER OPEN_BRACKET parameter_list2 CLOSE_BRACKET • SEMI_COLON
+  102 function_definition: VOID pointer IDENTIFIER OPEN_BRACKET parameter_list2 CLOSE_BRACKET • $@4 compound_statement F
+
+    SEMI_COLON  shift, and go to state 175
+
+    $default  reduce using rule 101 ($@4)
+
+    $@4  go to state 176
+
+
+State 119
+
+   46 direct_declarator: IDENTIFIER OPEN_SQUARE_BRACKET INTEGER_CONSTANT CLOSE_SQUARE_BRACKET SEMI_COLON •
+
+    $default  reduce using rule 46 (direct_declarator)
+
+
+State 120
+
+   90 function: non_void_type_specifier IDENTIFIER OPEN_BRACKET VOID CLOSE_BRACKET SEMI_COLON •
+
+    $default  reduce using rule 90 (function)
+
+
+State 121
+
+  116 function_definition: non_void_type_specifier IDENTIFIER OPEN_BRACKET VOID CLOSE_BRACKET $@11 • compound_statement F
+
+    OPEN_FLOWER_BRACKET  shift, and go to state 108
+
+    compound_statement  go to state 177
+
+
+State 122
+
+  108 function_definition: non_void_type_specifier IDENTIFIER OPEN_BRACKET CLOSE_BRACKET $@7 compound_statement • F
+
+    $default  reduce using rule 122 (F)
+
+    F  go to state 178
+
+
+State 123
+
+   92 function: non_void_type_specifier IDENTIFIER OPEN_BRACKET parameter_list2 CLOSE_BRACKET SEMI_COLON •
+
+    $default  reduce using rule 92 (function)
+
+
+State 124
+
+  112 function_definition: non_void_type_specifier IDENTIFIER OPEN_BRACKET parameter_list2 CLOSE_BRACKET $@9 • compound_statement F
+
+    OPEN_FLOWER_BRACKET  shift, and go to state 108
+
+    compound_statement  go to state 179
+
+
+State 125
+
+    5 primary_expression: OPEN_BRACKET expression CLOSE_BRACKET •
+
+    $default  reduce using rule 5 (primary_expression)
+
+
+State 126
+
+   10 postfix_expression: postfix_expression POINTER_INDIRECTION IDENTIFIER •
+
+    $default  reduce using rule 10 (postfix_expression)
+
+
+State 127
+
+    7 postfix_expression: postfix_expression OPEN_SQUARE_BRACKET expression • CLOSE_SQUARE_BRACKET
+
+    CLOSE_SQUARE_BRACKET  shift, and go to state 180
+
+
+State 128
+
+    8 postfix_expression: postfix_expression OPEN_BRACKET CLOSE_BRACKET •
+
+    $default  reduce using rule 8 (postfix_expression)
+
+
+State 129
+
+    9 postfix_expression: postfix_expression OPEN_BRACKET argument_expression_list • CLOSE_BRACKET
+   12 argument_expression_list: argument_expression_list • COMMA assignment_expression
+
+    CLOSE_BRACKET  shift, and go to state 181
+    COMMA          shift, and go to state 182
+
+
+State 130
+
+   11 argument_expression_list: assignment_expression •
+
+    $default  reduce using rule 11 (argument_expression_list)
+
+
+State 131
+
+   42 assignment_expression: unary_expression EQUAL assignment_expression •
+
+    $default  reduce using rule 42 (assignment_expression)
+
+
+State 132
+
+   14 unary_expression: unary_operator O unary_expression •
+
+    $default  reduce using rule 14 (unary_expression)
+
+
+State 133
+
+   21 multiplicative_expression: multiplicative_expression MULT unary_expression •
+
+    $default  reduce using rule 21 (multiplicative_expression)
+
+
+State 134
+
+   22 multiplicative_expression: multiplicative_expression DIVIDE unary_expression •
+
+    $default  reduce using rule 22 (multiplicative_expression)
+
+
+State 135
+
+   23 multiplicative_expression: multiplicative_expression REMAINDER unary_expression •
+
+    $default  reduce using rule 23 (multiplicative_expression)
+
+
+State 136
+
+   20 multiplicative_expression: unary_expression •
+
+    $default  reduce using rule 20 (multiplicative_expression)
+
+
+State 137
+
+   21 multiplicative_expression: multiplicative_expression • MULT unary_expression
+   22                          | multiplicative_expression • DIVIDE unary_expression
+   23                          | multiplicative_expression • REMAINDER unary_expression
+   25 additive_expression: additive_expression ADD multiplicative_expression •
+
+    MULT       shift, and go to state 87
+    DIVIDE     shift, and go to state 88
+    REMAINDER  shift, and go to state 89
+
+    $default  reduce using rule 25 (additive_expression)
+
+
+State 138
+
+   21 multiplicative_expression: multiplicative_expression • MULT unary_expression
+   22                          | multiplicative_expression • DIVIDE unary_expression
+   23                          | multiplicative_expression • REMAINDER unary_expression
+   26 additive_expression: additive_expression SUB multiplicative_expression •
+
+    MULT       shift, and go to state 87
+    DIVIDE     shift, and go to state 88
+    REMAINDER  shift, and go to state 89
+
+    $default  reduce using rule 26 (additive_expression)
+
+
+State 139
+
+   25 additive_expression: additive_expression • ADD multiplicative_expression
+   26                    | additive_expression • SUB multiplicative_expression
+   30 relational_expression: relational_expression LESS_THAN_OR_EQUAL additive_expression •
+
+    ADD  shift, and go to state 90
+    SUB  shift, and go to state 91
+
+    $default  reduce using rule 30 (relational_expression)
+
+
+State 140
+
+   25 additive_expression: additive_expression • ADD multiplicative_expression
+   26                    | additive_expression • SUB multiplicative_expression
+   31 relational_expression: relational_expression GREATER_THAN_OR_EQUAL additive_expression •
+
+    ADD  shift, and go to state 90
+    SUB  shift, and go to state 91
+
+    $default  reduce using rule 31 (relational_expression)
+
+
+State 141
+
+   25 additive_expression: additive_expression • ADD multiplicative_expression
+   26                    | additive_expression • SUB multiplicative_expression
+   28 relational_expression: relational_expression LESS_THAN additive_expression •
+
+    ADD  shift, and go to state 90
+    SUB  shift, and go to state 91
+
+    $default  reduce using rule 28 (relational_expression)
+
+
+State 142
+
+   25 additive_expression: additive_expression • ADD multiplicative_expression
+   26                    | additive_expression • SUB multiplicative_expression
+   29 relational_expression: relational_expression GREATER_THAN additive_expression •
+
+    ADD  shift, and go to state 90
+    SUB  shift, and go to state 91
+
+    $default  reduce using rule 29 (relational_expression)
+
+
+State 143
+
+   28 relational_expression: relational_expression • LESS_THAN additive_expression
+   29                      | relational_expression • GREATER_THAN additive_expression
+   30                      | relational_expression • LESS_THAN_OR_EQUAL additive_expression
+   31                      | relational_expression • GREATER_THAN_OR_EQUAL additive_expression
+   33 equality_expression: equality_expression EQUAL_TO relational_expression •
+
+    LESS_THAN_OR_EQUAL     shift, and go to state 92
+    GREATER_THAN_OR_EQUAL  shift, and go to state 93
+    LESS_THAN              shift, and go to state 94
+    GREATER_THAN           shift, and go to state 95
+
+    $default  reduce using rule 33 (equality_expression)
+
+
+State 144
+
+   28 relational_expression: relational_expression • LESS_THAN additive_expression
+   29                      | relational_expression • GREATER_THAN additive_expression
+   30                      | relational_expression • LESS_THAN_OR_EQUAL additive_expression
+   31                      | relational_expression • GREATER_THAN_OR_EQUAL additive_expression
+   34 equality_expression: equality_expression NOT_EQUAL_TO relational_expression •
+
+    LESS_THAN_OR_EQUAL     shift, and go to state 92
+    GREATER_THAN_OR_EQUAL  shift, and go to state 93
+    LESS_THAN              shift, and go to state 94
+    GREATER_THAN           shift, and go to state 95
+
+    $default  reduce using rule 34 (equality_expression)
+
+
+State 145
+
+   36 logical_AND_expression: logical_AND_expression LOGICAL_AND M • equality_expression
+
+    OPEN_BRACKET      shift, and go to state 39
+    AND               shift, and go to state 40
+    MULT              shift, and go to state 41
+    ADD               shift, and go to state 42
+    SUB               shift, and go to state 43
+    NOT               shift, and go to state 44
+    IDENTIFIER        shift, and go to state 45
+    INTEGER_CONSTANT  shift, and go to state 46
+    CHAR_CONSTANT     shift, and go to state 47
+    STRING_LITERAL    shift, and go to state 48
+
+    primary_expression         go to state 49
+    postfix_expression         go to state 50
+    unary_expression           go to state 136
+    unary_operator             go to state 52
+    multiplicative_expression  go to state 53
+    additive_expression        go to state 54
+    relational_expression      go to state 55
+    equality_expression        go to state 183
+
+
+State 146
+
+   38 logical_OR_expression: logical_OR_expression LOGICAL_OR M • logical_AND_expression
+
+    OPEN_BRACKET      shift, and go to state 39
+    AND               shift, and go to state 40
+    MULT              shift, and go to state 41
+    ADD               shift, and go to state 42
+    SUB               shift, and go to state 43
+    NOT               shift, and go to state 44
+    IDENTIFIER        shift, and go to state 45
+    INTEGER_CONSTANT  shift, and go to state 46
+    CHAR_CONSTANT     shift, and go to state 47
+    STRING_LITERAL    shift, and go to state 48
+
+    primary_expression         go to state 49
+    postfix_expression         go to state 50
+    unary_expression           go to state 136
+    unary_operator             go to state 52
+    multiplicative_expression  go to state 53
+    additive_expression        go to state 54
+    relational_expression      go to state 55
+    equality_expression        go to state 56
+    logical_AND_expression     go to state 184
+
+
+State 147
+
+   40 conditional_expression: logical_OR_expression N QUESTION_MARK • M expression N COLON M conditional_expression
+
+    $default  reduce using rule 119 (M)
+
+    M  go to state 185
+
+
+State 148
+
+   91 function: non_void_type_specifier pointer IDENTIFIER OPEN_BRACKET VOID CLOSE_BRACKET • SEMI_COLON
+  118 function_definition: non_void_type_specifier pointer IDENTIFIER OPEN_BRACKET VOID CLOSE_BRACKET • $@12 compound_statement F
+
+    SEMI_COLON  shift, and go to state 186
+
+    $default  reduce using rule 117 ($@12)
+
+    $@12  go to state 187
+
+
+State 149
+
+   88 function: non_void_type_specifier pointer IDENTIFIER OPEN_BRACKET CLOSE_BRACKET SEMI_COLON •
+
+    $default  reduce using rule 88 (function)
+
+
+State 150
+
+  110 function_definition: non_void_type_specifier pointer IDENTIFIER OPEN_BRACKET CLOSE_BRACKET $@8 • compound_statement F
+
+    OPEN_FLOWER_BRACKET  shift, and go to state 108
+
+    compound_statement  go to state 188
+
+
+State 151
+
+   93 function: non_void_type_specifier pointer IDENTIFIER OPEN_BRACKET parameter_list2 CLOSE_BRACKET • SEMI_COLON
+  114 function_definition: non_void_type_specifier pointer IDENTIFIER OPEN_BRACKET parameter_list2 CLOSE_BRACKET • $@10 compound_statement F
+
+    SEMI_COLON  shift, and go to state 189
+
+    $default  reduce using rule 113 ($@10)
+
+    $@10  go to state 190
+
+
+State 152
+
+  104 function_definition: VOID IDENTIFIER OPEN_BRACKET VOID CLOSE_BRACKET $@5 compound_statement • F
+
+    $default  reduce using rule 122 (F)
+
+    F  go to state 191
+
+
+State 153
+
+   45 internal_declaration: VOID • pointer direct_declarator
+
+    MULT  shift, and go to state 9
+
+    pointer  go to state 192
+
+
+State 154
+
+   74 selection_statement: IF • OPEN_BRACKET expression N CLOSE_BRACKET M statement N ELSE M statement
+   75                    | IF • OPEN_BRACKET expression N CLOSE_BRACKET M statement N
+
+    OPEN_BRACKET  shift, and go to state 193
+
+
+State 155
+
+   76 iteration_statement: FOR • OPEN_BRACKET expression_statement M expression_statement N M expression N CLOSE_BRACKET M statement
+
+    OPEN_BRACKET  shift, and go to state 194
+
+
+State 156
+
+   77 jump_statement: RETURN • SEMI_COLON
+   78               | RETURN • expression SEMI_COLON
+
+    OPEN_BRACKET      shift, and go to state 39
+    AND               shift, and go to state 40
+    MULT              shift, and go to state 41
+    ADD               shift, and go to state 42
+    SUB               shift, and go to state 43
+    NOT               shift, and go to state 44
+    SEMI_COLON        shift, and go to state 195
+    IDENTIFIER        shift, and go to state 45
+    INTEGER_CONSTANT  shift, and go to state 46
+    CHAR_CONSTANT     shift, and go to state 47
+    STRING_LITERAL    shift, and go to state 48
+
+    primary_expression         go to state 49
+    postfix_expression         go to state 50
+    unary_expression           go to state 51
+    unary_operator             go to state 52
+    multiplicative_expression  go to state 53
+    additive_expression        go to state 54
+    relational_expression      go to state 55
+    equality_expression        go to state 56
+    logical_AND_expression     go to state 57
+    logical_OR_expression      go to state 58
+    conditional_expression     go to state 59
+    assignment_expression      go to state 80
+    expression                 go to state 196
+
+
+State 157
+
+   66 compound_statement: OPEN_FLOWER_BRACKET CLOSE_FLOWER_BRACKET •
+
+    $default  reduce using rule 66 (compound_statement)
+
+
+State 158
+
+   72 expression_statement: SEMI_COLON •
+
+    $default  reduce using rule 72 (expression_statement)
+
+
+State 159
+
+   73 expression_statement: expression • SEMI_COLON
+
+    SEMI_COLON  shift, and go to state 197
+
+
+State 160
+
+   70 block_item: internal_declaration •
+
+    $default  reduce using rule 70 (block_item)
+
+
+State 161
+
+   44 internal_declaration: non_void_type_specifier • declarator
+
+    MULT        shift, and go to state 9
+    IDENTIFIER  shift, and go to state 198
+
+    direct_declarator  go to state 13
+    declarator         go to state 14
+    pointer            go to state 199
+
+
+State 162
+
+   71 block_item: statement •
+
+    $default  reduce using rule 71 (block_item)
+
+
+State 163
+
+   61 statement: compound_statement •
+
+    $default  reduce using rule 61 (statement)
+
+
+State 164
+
+   67 compound_statement: OPEN_FLOWER_BRACKET block_item_list • CLOSE_FLOWER_BRACKET
+   69 block_item_list: block_item_list • M block_item
+
+    CLOSE_FLOWER_BRACKET  shift, and go to state 200
+
+    $default  reduce using rule 119 (M)
+
+    M  go to state 201
+
+
+State 165
+
+   68 block_item_list: block_item •
+
+    $default  reduce using rule 68 (block_item_list)
+
+
+State 166
+
+   62 statement: expression_statement •
+
+    $default  reduce using rule 62 (statement)
+
+
+State 167
+
+   63 statement: selection_statement •
+
+    $default  reduce using rule 63 (statement)
+
+
+State 168
+
+   64 statement: iteration_statement •
+
+    $default  reduce using rule 64 (statement)
+
+
+State 169
+
+   65 statement: jump_statement •
+
+    $default  reduce using rule 65 (statement)
+
+
+State 170
+
+   96 function_definition: VOID IDENTIFIER OPEN_BRACKET CLOSE_BRACKET $@1 compound_statement F •
+
+    $default  reduce using rule 96 (function_definition)
+
+
+State 171
+
+  100 function_definition: VOID IDENTIFIER OPEN_BRACKET parameter_list2 CLOSE_BRACKET $@3 compound_statement • F
+
+    $default  reduce using rule 122 (F)
+
+    F  go to state 202
+
+
+State 172
+
+   85 function: VOID pointer IDENTIFIER OPEN_BRACKET VOID CLOSE_BRACKET SEMI_COLON •
+
+    $default  reduce using rule 85 (function)
+
+
+State 173
+
+  106 function_definition: VOID pointer IDENTIFIER OPEN_BRACKET VOID CLOSE_BRACKET $@6 • compound_statement F
+
+    OPEN_FLOWER_BRACKET  shift, and go to state 108
+
+    compound_statement  go to state 203
+
+
+State 174
+
+   98 function_definition: VOID pointer IDENTIFIER OPEN_BRACKET CLOSE_BRACKET $@2 compound_statement • F
+
+    $default  reduce using rule 122 (F)
+
+    F  go to state 204
+
+
+State 175
+
+   87 function: VOID pointer IDENTIFIER OPEN_BRACKET parameter_list2 CLOSE_BRACKET SEMI_COLON •
+
+    $default  reduce using rule 87 (function)
+
+
+State 176
+
+  102 function_definition: VOID pointer IDENTIFIER OPEN_BRACKET parameter_list2 CLOSE_BRACKET $@4 • compound_statement F
+
+    OPEN_FLOWER_BRACKET  shift, and go to state 108
+
+    compound_statement  go to state 205
+
+
+State 177
+
+  116 function_definition: non_void_type_specifier IDENTIFIER OPEN_BRACKET VOID CLOSE_BRACKET $@11 compound_statement • F
+
+    $default  reduce using rule 122 (F)
+
+    F  go to state 206
+
+
+State 178
+
+  108 function_definition: non_void_type_specifier IDENTIFIER OPEN_BRACKET CLOSE_BRACKET $@7 compound_statement F •
+
+    $default  reduce using rule 108 (function_definition)
+
+
+State 179
+
+  112 function_definition: non_void_type_specifier IDENTIFIER OPEN_BRACKET parameter_list2 CLOSE_BRACKET $@9 compound_statement • F
+
+    $default  reduce using rule 122 (F)
+
+    F  go to state 207
+
+
+State 180
+
+    7 postfix_expression: postfix_expression OPEN_SQUARE_BRACKET expression CLOSE_SQUARE_BRACKET •
+
+    $default  reduce using rule 7 (postfix_expression)
+
+
+State 181
+
+    9 postfix_expression: postfix_expression OPEN_BRACKET argument_expression_list CLOSE_BRACKET •
+
+    $default  reduce using rule 9 (postfix_expression)
+
+
+State 182
+
+   12 argument_expression_list: argument_expression_list COMMA • assignment_expression
+
+    OPEN_BRACKET      shift, and go to state 39
+    AND               shift, and go to state 40
+    MULT              shift, and go to state 41
+    ADD               shift, and go to state 42
+    SUB               shift, and go to state 43
+    NOT               shift, and go to state 44
+    IDENTIFIER        shift, and go to state 45
+    INTEGER_CONSTANT  shift, and go to state 46
+    CHAR_CONSTANT     shift, and go to state 47
+    STRING_LITERAL    shift, and go to state 48
+
+    primary_expression         go to state 49
+    postfix_expression         go to state 50
+    unary_expression           go to state 51
+    unary_operator             go to state 52
+    multiplicative_expression  go to state 53
+    additive_expression        go to state 54
+    relational_expression      go to state 55
+    equality_expression        go to state 56
+    logical_AND_expression     go to state 57
+    logical_OR_expression      go to state 58
+    conditional_expression     go to state 59
+    assignment_expression      go to state 208
+
+
+State 183
+
+   33 equality_expression: equality_expression • EQUAL_TO relational_expression
+   34                    | equality_expression • NOT_EQUAL_TO relational_expression
+   36 logical_AND_expression: logical_AND_expression LOGICAL_AND M equality_expression •
+
+    EQUAL_TO      shift, and go to state 96
+    NOT_EQUAL_TO  shift, and go to state 97
+
+    $default  reduce using rule 36 (logical_AND_expression)
+
+
+State 184
+
+   36 logical_AND_expression: logical_AND_expression • LOGICAL_AND M equality_expression
+   38 logical_OR_expression: logical_OR_expression LOGICAL_OR M logical_AND_expression •
+
+    LOGICAL_AND  shift, and go to state 98
+
+    $default  reduce using rule 38 (logical_OR_expression)
+
+
+State 185
+
+   40 conditional_expression: logical_OR_expression N QUESTION_MARK M • expression N COLON M conditional_expression
+
+    OPEN_BRACKET      shift, and go to state 39
+    AND               shift, and go to state 40
+    MULT              shift, and go to state 41
+    ADD               shift, and go to state 42
+    SUB               shift, and go to state 43
+    NOT               shift, and go to state 44
+    IDENTIFIER        shift, and go to state 45
+    INTEGER_CONSTANT  shift, and go to state 46
+    CHAR_CONSTANT     shift, and go to state 47
+    STRING_LITERAL    shift, and go to state 48
+
+    primary_expression         go to state 49
+    postfix_expression         go to state 50
+    unary_expression           go to state 51
+    unary_operator             go to state 52
+    multiplicative_expression  go to state 53
+    additive_expression        go to state 54
+    relational_expression      go to state 55
+    equality_expression        go to state 56
+    logical_AND_expression     go to state 57
+    logical_OR_expression      go to state 58
+    conditional_expression     go to state 59
+    assignment_expression      go to state 80
+    expression                 go to state 209
+
+
+State 186
+
+   91 function: non_void_type_specifier pointer IDENTIFIER OPEN_BRACKET VOID CLOSE_BRACKET SEMI_COLON •
+
+    $default  reduce using rule 91 (function)
+
+
+State 187
+
+  118 function_definition: non_void_type_specifier pointer IDENTIFIER OPEN_BRACKET VOID CLOSE_BRACKET $@12 • compound_statement F
+
+    OPEN_FLOWER_BRACKET  shift, and go to state 108
+
+    compound_statement  go to state 210
+
+
+State 188
+
+  110 function_definition: non_void_type_specifier pointer IDENTIFIER OPEN_BRACKET CLOSE_BRACKET $@8 compound_statement • F
+
+    $default  reduce using rule 122 (F)
+
+    F  go to state 211
+
+
+State 189
+
+   93 function: non_void_type_specifier pointer IDENTIFIER OPEN_BRACKET parameter_list2 CLOSE_BRACKET SEMI_COLON •
+
+    $default  reduce using rule 93 (function)
+
+
+State 190
+
+  114 function_definition: non_void_type_specifier pointer IDENTIFIER OPEN_BRACKET parameter_list2 CLOSE_BRACKET $@10 • compound_statement F
+
+    OPEN_FLOWER_BRACKET  shift, and go to state 108
+
+    compound_statement  go to state 212
+
+
+State 191
+
+  104 function_definition: VOID IDENTIFIER OPEN_BRACKET VOID CLOSE_BRACKET $@5 compound_statement F •
+
+    $default  reduce using rule 104 (function_definition)
+
+
+State 192
+
+   45 internal_declaration: VOID pointer • direct_declarator
+
+    IDENTIFIER  shift, and go to state 198
+
+    direct_declarator  go to state 20
+
+
+State 193
+
+   74 selection_statement: IF OPEN_BRACKET • expression N CLOSE_BRACKET M statement N ELSE M statement
+   75                    | IF OPEN_BRACKET • expression N CLOSE_BRACKET M statement N
+
+    OPEN_BRACKET      shift, and go to state 39
+    AND               shift, and go to state 40
+    MULT              shift, and go to state 41
+    ADD               shift, and go to state 42
+    SUB               shift, and go to state 43
+    NOT               shift, and go to state 44
+    IDENTIFIER        shift, and go to state 45
+    INTEGER_CONSTANT  shift, and go to state 46
+    CHAR_CONSTANT     shift, and go to state 47
+    STRING_LITERAL    shift, and go to state 48
+
+    primary_expression         go to state 49
+    postfix_expression         go to state 50
+    unary_expression           go to state 51
+    unary_operator             go to state 52
+    multiplicative_expression  go to state 53
+    additive_expression        go to state 54
+    relational_expression      go to state 55
+    equality_expression        go to state 56
+    logical_AND_expression     go to state 57
+    logical_OR_expression      go to state 58
+    conditional_expression     go to state 59
+    assignment_expression      go to state 80
+    expression                 go to state 213
+
+
+State 194
+
+   76 iteration_statement: FOR OPEN_BRACKET • expression_statement M expression_statement N M expression N CLOSE_BRACKET M statement
+
+    OPEN_BRACKET      shift, and go to state 39
+    AND               shift, and go to state 40
+    MULT              shift, and go to state 41
+    ADD               shift, and go to state 42
+    SUB               shift, and go to state 43
+    NOT               shift, and go to state 44
+    SEMI_COLON        shift, and go to state 158
+    IDENTIFIER        shift, and go to state 45
+    INTEGER_CONSTANT  shift, and go to state 46
+    CHAR_CONSTANT     shift, and go to state 47
+    STRING_LITERAL    shift, and go to state 48
+
+    primary_expression         go to state 49
+    postfix_expression         go to state 50
+    unary_expression           go to state 51
+    unary_operator             go to state 52
+    multiplicative_expression  go to state 53
+    additive_expression        go to state 54
+    relational_expression      go to state 55
+    equality_expression        go to state 56
+    logical_AND_expression     go to state 57
+    logical_OR_expression      go to state 58
+    conditional_expression     go to state 59
+    assignment_expression      go to state 80
+    expression                 go to state 159
+    expression_statement       go to state 214
+
+
+State 195
+
+   77 jump_statement: RETURN SEMI_COLON •
+
+    $default  reduce using rule 77 (jump_statement)
+
+
+State 196
+
+   78 jump_statement: RETURN expression • SEMI_COLON
+
+    SEMI_COLON  shift, and go to state 215
+
+
+State 197
+
+   73 expression_statement: expression SEMI_COLON •
+
+    $default  reduce using rule 73 (expression_statement)
+
+
+State 198
+
+   46 direct_declarator: IDENTIFIER • OPEN_SQUARE_BRACKET INTEGER_CONSTANT CLOSE_SQUARE_BRACKET SEMI_COLON
+   47                  | IDENTIFIER • SEMI_COLON
+   48                  | IDENTIFIER • EQUAL initializer SEMI_COLON
+
+    OPEN_SQUARE_BRACKET  shift, and go to state 21
+    EQUAL                shift, and go to state 23
+    SEMI_COLON           shift, and go to state 24
+
+
+State 199
+
+   52 declarator: pointer • direct_declarator
+
+    IDENTIFIER  shift, and go to state 198
+
+    direct_declarator  go to state 26
+
+
+State 200
+
+   67 compound_statement: OPEN_FLOWER_BRACKET block_item_list CLOSE_FLOWER_BRACKET •
+
+    $default  reduce using rule 67 (compound_statement)
+
+
+State 201
+
+   69 block_item_list: block_item_list M • block_item
+
+    VOID                 shift, and go to state 153
+    IF                   shift, and go to state 154
+    FOR                  shift, and go to state 155
+    RETURN               shift, and go to state 156
+    OPEN_BRACKET         shift, and go to state 39
+    OPEN_FLOWER_BRACKET  shift, and go to state 108
+    AND                  shift, and go to state 40
+    MULT                 shift, and go to state 41
+    ADD                  shift, and go to state 42
+    SUB                  shift, and go to state 43
+    NOT                  shift, and go to state 44
+    SEMI_COLON           shift, and go to state 158
+    CHAR                 shift, and go to state 2
+    INT                  shift, and go to state 3
+    IDENTIFIER           shift, and go to state 45
+    INTEGER_CONSTANT     shift, and go to state 46
+    CHAR_CONSTANT        shift, and go to state 47
+    STRING_LITERAL       shift, and go to state 48
+
+    primary_expression         go to state 49
+    postfix_expression         go to state 50
+    unary_expression           go to state 51
+    unary_operator             go to state 52
+    multiplicative_expression  go to state 53
+    additive_expression        go to state 54
+    relational_expression      go to state 55
+    equality_expression        go to state 56
+    logical_AND_expression     go to state 57
+    logical_OR_expression      go to state 58
+    conditional_expression     go to state 59
+    assignment_expression      go to state 80
+    expression                 go to state 159
+    internal_declaration       go to state 160
+    non_void_type_specifier    go to state 161
+    statement                  go to state 162
+    compound_statement         go to state 163
+    block_item                 go to state 216
+    expression_statement       go to state 166
+    selection_statement        go to state 167
+    iteration_statement        go to state 168
+    jump_statement             go to state 169
+
+
+State 202
+
+  100 function_definition: VOID IDENTIFIER OPEN_BRACKET parameter_list2 CLOSE_BRACKET $@3 compound_statement F •
+
+    $default  reduce using rule 100 (function_definition)
+
+
+State 203
+
+  106 function_definition: VOID pointer IDENTIFIER OPEN_BRACKET VOID CLOSE_BRACKET $@6 compound_statement • F
+
+    $default  reduce using rule 122 (F)
+
+    F  go to state 217
+
+
+State 204
+
+   98 function_definition: VOID pointer IDENTIFIER OPEN_BRACKET CLOSE_BRACKET $@2 compound_statement F •
+
+    $default  reduce using rule 98 (function_definition)
+
+
+State 205
+
+  102 function_definition: VOID pointer IDENTIFIER OPEN_BRACKET parameter_list2 CLOSE_BRACKET $@4 compound_statement • F
+
+    $default  reduce using rule 122 (F)
+
+    F  go to state 218
+
+
+State 206
+
+  116 function_definition: non_void_type_specifier IDENTIFIER OPEN_BRACKET VOID CLOSE_BRACKET $@11 compound_statement F •
+
+    $default  reduce using rule 116 (function_definition)
+
+
+State 207
+
+  112 function_definition: non_void_type_specifier IDENTIFIER OPEN_BRACKET parameter_list2 CLOSE_BRACKET $@9 compound_statement F •
+
+    $default  reduce using rule 112 (function_definition)
+
+
+State 208
+
+   12 argument_expression_list: argument_expression_list COMMA assignment_expression •
+
+    $default  reduce using rule 12 (argument_expression_list)
+
+
+State 209
+
+   40 conditional_expression: logical_OR_expression N QUESTION_MARK M expression • N COLON M conditional_expression
+
+    $default  reduce using rule 120 (N)
+
+    N  go to state 219
+
+
+State 210
+
+  118 function_definition: non_void_type_specifier pointer IDENTIFIER OPEN_BRACKET VOID CLOSE_BRACKET $@12 compound_statement • F
+
+    $default  reduce using rule 122 (F)
+
+    F  go to state 220
+
+
+State 211
+
+  110 function_definition: non_void_type_specifier pointer IDENTIFIER OPEN_BRACKET CLOSE_BRACKET $@8 compound_statement F •
+
+    $default  reduce using rule 110 (function_definition)
+
+
+State 212
+
+  114 function_definition: non_void_type_specifier pointer IDENTIFIER OPEN_BRACKET parameter_list2 CLOSE_BRACKET $@10 compound_statement • F
+
+    $default  reduce using rule 122 (F)
+
+    F  go to state 221
+
+
+State 213
+
+   74 selection_statement: IF OPEN_BRACKET expression • N CLOSE_BRACKET M statement N ELSE M statement
+   75                    | IF OPEN_BRACKET expression • N CLOSE_BRACKET M statement N
+
+    $default  reduce using rule 120 (N)
+
+    N  go to state 222
+
+
+State 214
+
+   76 iteration_statement: FOR OPEN_BRACKET expression_statement • M expression_statement N M expression N CLOSE_BRACKET M statement
+
+    $default  reduce using rule 119 (M)
+
+    M  go to state 223
+
+
+State 215
+
+   78 jump_statement: RETURN expression SEMI_COLON •
+
+    $default  reduce using rule 78 (jump_statement)
+
+
+State 216
+
+   69 block_item_list: block_item_list M block_item •
+
+    $default  reduce using rule 69 (block_item_list)
+
+
+State 217
+
+  106 function_definition: VOID pointer IDENTIFIER OPEN_BRACKET VOID CLOSE_BRACKET $@6 compound_statement F •
+
+    $default  reduce using rule 106 (function_definition)
+
+
+State 218
+
+  102 function_definition: VOID pointer IDENTIFIER OPEN_BRACKET parameter_list2 CLOSE_BRACKET $@4 compound_statement F •
+
+    $default  reduce using rule 102 (function_definition)
+
+
+State 219
+
+   40 conditional_expression: logical_OR_expression N QUESTION_MARK M expression N • COLON M conditional_expression
+
+    COLON  shift, and go to state 224
+
+
+State 220
+
+  118 function_definition: non_void_type_specifier pointer IDENTIFIER OPEN_BRACKET VOID CLOSE_BRACKET $@12 compound_statement F •
+
+    $default  reduce using rule 118 (function_definition)
+
+
+State 221
+
+  114 function_definition: non_void_type_specifier pointer IDENTIFIER OPEN_BRACKET parameter_list2 CLOSE_BRACKET $@10 compound_statement F •
+
+    $default  reduce using rule 114 (function_definition)
+
+
+State 222
+
+   74 selection_statement: IF OPEN_BRACKET expression N • CLOSE_BRACKET M statement N ELSE M statement
+   75                    | IF OPEN_BRACKET expression N • CLOSE_BRACKET M statement N
+
+    CLOSE_BRACKET  shift, and go to state 225
+
+
+State 223
+
+   76 iteration_statement: FOR OPEN_BRACKET expression_statement M • expression_statement N M expression N CLOSE_BRACKET M statement
+
+    OPEN_BRACKET      shift, and go to state 39
+    AND               shift, and go to state 40
+    MULT              shift, and go to state 41
+    ADD               shift, and go to state 42
+    SUB               shift, and go to state 43
+    NOT               shift, and go to state 44
+    SEMI_COLON        shift, and go to state 158
+    IDENTIFIER        shift, and go to state 45
+    INTEGER_CONSTANT  shift, and go to state 46
+    CHAR_CONSTANT     shift, and go to state 47
+    STRING_LITERAL    shift, and go to state 48
+
+    primary_expression         go to state 49
+    postfix_expression         go to state 50
+    unary_expression           go to state 51
+    unary_operator             go to state 52
+    multiplicative_expression  go to state 53
+    additive_expression        go to state 54
+    relational_expression      go to state 55
+    equality_expression        go to state 56
+    logical_AND_expression     go to state 57
+    logical_OR_expression      go to state 58
+    conditional_expression     go to state 59
+    assignment_expression      go to state 80
+    expression                 go to state 159
+    expression_statement       go to state 226
+
+
+State 224
+
+   40 conditional_expression: logical_OR_expression N QUESTION_MARK M expression N COLON • M conditional_expression
+
+    $default  reduce using rule 119 (M)
+
+    M  go to state 227
+
+
+State 225
+
+   74 selection_statement: IF OPEN_BRACKET expression N CLOSE_BRACKET • M statement N ELSE M statement
+   75                    | IF OPEN_BRACKET expression N CLOSE_BRACKET • M statement N
+
+    $default  reduce using rule 119 (M)
+
+    M  go to state 228
+
+
+State 226
+
+   76 iteration_statement: FOR OPEN_BRACKET expression_statement M expression_statement • N M expression N CLOSE_BRACKET M statement
+
+    $default  reduce using rule 120 (N)
+
+    N  go to state 229
+
+
+State 227
+
+   40 conditional_expression: logical_OR_expression N QUESTION_MARK M expression N COLON M • conditional_expression
+
+    OPEN_BRACKET      shift, and go to state 39
+    AND               shift, and go to state 40
+    MULT              shift, and go to state 41
+    ADD               shift, and go to state 42
+    SUB               shift, and go to state 43
+    NOT               shift, and go to state 44
+    IDENTIFIER        shift, and go to state 45
+    INTEGER_CONSTANT  shift, and go to state 46
+    CHAR_CONSTANT     shift, and go to state 47
+    STRING_LITERAL    shift, and go to state 48
+
+    primary_expression         go to state 49
+    postfix_expression         go to state 50
+    unary_expression           go to state 136
+    unary_operator             go to state 52
+    multiplicative_expression  go to state 53
+    additive_expression        go to state 54
+    relational_expression      go to state 55
+    equality_expression        go to state 56
+    logical_AND_expression     go to state 57
+    logical_OR_expression      go to state 58
+    conditional_expression     go to state 230
+
+
+State 228
+
+   74 selection_statement: IF OPEN_BRACKET expression N CLOSE_BRACKET M • statement N ELSE M statement
+   75                    | IF OPEN_BRACKET expression N CLOSE_BRACKET M • statement N
+
+    IF                   shift, and go to state 154
+    FOR                  shift, and go to state 155
+    RETURN               shift, and go to state 156
+    OPEN_BRACKET         shift, and go to state 39
+    OPEN_FLOWER_BRACKET  shift, and go to state 108
+    AND                  shift, and go to state 40
+    MULT                 shift, and go to state 41
+    ADD                  shift, and go to state 42
+    SUB                  shift, and go to state 43
+    NOT                  shift, and go to state 44
+    SEMI_COLON           shift, and go to state 158
+    IDENTIFIER           shift, and go to state 45
+    INTEGER_CONSTANT     shift, and go to state 46
+    CHAR_CONSTANT        shift, and go to state 47
+    STRING_LITERAL       shift, and go to state 48
+
+    primary_expression         go to state 49
+    postfix_expression         go to state 50
+    unary_expression           go to state 51
+    unary_operator             go to state 52
+    multiplicative_expression  go to state 53
+    additive_expression        go to state 54
+    relational_expression      go to state 55
+    equality_expression        go to state 56
+    logical_AND_expression     go to state 57
+    logical_OR_expression      go to state 58
+    conditional_expression     go to state 59
+    assignment_expression      go to state 80
+    expression                 go to state 159
+    statement                  go to state 231
+    compound_statement         go to state 163
+    expression_statement       go to state 166
+    selection_statement        go to state 167
+    iteration_statement        go to state 168
+    jump_statement             go to state 169
+
+
+State 229
+
+   76 iteration_statement: FOR OPEN_BRACKET expression_statement M expression_statement N • M expression N CLOSE_BRACKET M statement
+
+    $default  reduce using rule 119 (M)
+
+    M  go to state 232
+
+
+State 230
+
+   40 conditional_expression: logical_OR_expression N QUESTION_MARK M expression N COLON M conditional_expression •
+
+    $default  reduce using rule 40 (conditional_expression)
+
+
+State 231
+
+   74 selection_statement: IF OPEN_BRACKET expression N CLOSE_BRACKET M statement • N ELSE M statement
+   75                    | IF OPEN_BRACKET expression N CLOSE_BRACKET M statement • N
+
+    $default  reduce using rule 120 (N)
+
+    N  go to state 233
+
+
+State 232
+
+   76 iteration_statement: FOR OPEN_BRACKET expression_statement M expression_statement N M • expression N CLOSE_BRACKET M statement
+
+    OPEN_BRACKET      shift, and go to state 39
+    AND               shift, and go to state 40
+    MULT              shift, and go to state 41
+    ADD               shift, and go to state 42
+    SUB               shift, and go to state 43
+    NOT               shift, and go to state 44
+    IDENTIFIER        shift, and go to state 45
+    INTEGER_CONSTANT  shift, and go to state 46
+    CHAR_CONSTANT     shift, and go to state 47
+    STRING_LITERAL    shift, and go to state 48
+
+    primary_expression         go to state 49
+    postfix_expression         go to state 50
+    unary_expression           go to state 51
+    unary_operator             go to state 52
+    multiplicative_expression  go to state 53
+    additive_expression        go to state 54
+    relational_expression      go to state 55
+    equality_expression        go to state 56
+    logical_AND_expression     go to state 57
+    logical_OR_expression      go to state 58
+    conditional_expression     go to state 59
+    assignment_expression      go to state 80
+    expression                 go to state 234
+
+
+State 233
+
+   74 selection_statement: IF OPEN_BRACKET expression N CLOSE_BRACKET M statement N • ELSE M statement
+   75                    | IF OPEN_BRACKET expression N CLOSE_BRACKET M statement N •
+
+    ELSE  shift, and go to state 235
+
+    ELSE      [reduce using rule 75 (selection_statement)]
+    $default  reduce using rule 75 (selection_statement)
+
+
+State 234
+
+   76 iteration_statement: FOR OPEN_BRACKET expression_statement M expression_statement N M expression • N CLOSE_BRACKET M statement
+
+    $default  reduce using rule 120 (N)
+
+    N  go to state 236
+
+
+State 235
+
+   74 selection_statement: IF OPEN_BRACKET expression N CLOSE_BRACKET M statement N ELSE • M statement
+
+    $default  reduce using rule 119 (M)
+
+    M  go to state 237
+
+
+State 236
+
+   76 iteration_statement: FOR OPEN_BRACKET expression_statement M expression_statement N M expression N • CLOSE_BRACKET M statement
+
+    CLOSE_BRACKET  shift, and go to state 238
+
+
+State 237
+
+   74 selection_statement: IF OPEN_BRACKET expression N CLOSE_BRACKET M statement N ELSE M • statement
+
+    IF                   shift, and go to state 154
+    FOR                  shift, and go to state 155
+    RETURN               shift, and go to state 156
+    OPEN_BRACKET         shift, and go to state 39
+    OPEN_FLOWER_BRACKET  shift, and go to state 108
+    AND                  shift, and go to state 40
+    MULT                 shift, and go to state 41
+    ADD                  shift, and go to state 42
+    SUB                  shift, and go to state 43
+    NOT                  shift, and go to state 44
+    SEMI_COLON           shift, and go to state 158
+    IDENTIFIER           shift, and go to state 45
+    INTEGER_CONSTANT     shift, and go to state 46
+    CHAR_CONSTANT        shift, and go to state 47
+    STRING_LITERAL       shift, and go to state 48
+
+    primary_expression         go to state 49
+    postfix_expression         go to state 50
+    unary_expression           go to state 51
+    unary_operator             go to state 52
+    multiplicative_expression  go to state 53
+    additive_expression        go to state 54
+    relational_expression      go to state 55
+    equality_expression        go to state 56
+    logical_AND_expression     go to state 57
+    logical_OR_expression      go to state 58
+    conditional_expression     go to state 59
+    assignment_expression      go to state 80
+    expression                 go to state 159
+    statement                  go to state 239
+    compound_statement         go to state 163
+    expression_statement       go to state 166
+    selection_statement        go to state 167
+    iteration_statement        go to state 168
+    jump_statement             go to state 169
+
+
+State 238
+
+   76 iteration_statement: FOR OPEN_BRACKET expression_statement M expression_statement N M expression N CLOSE_BRACKET • M statement
+
+    $default  reduce using rule 119 (M)
+
+    M  go to state 240
+
+
+State 239
+
+   74 selection_statement: IF OPEN_BRACKET expression N CLOSE_BRACKET M statement N ELSE M statement •
+
+    $default  reduce using rule 74 (selection_statement)
+
+
+State 240
+
+   76 iteration_statement: FOR OPEN_BRACKET expression_statement M expression_statement N M expression N CLOSE_BRACKET M • statement
+
+    IF                   shift, and go to state 154
+    FOR                  shift, and go to state 155
+    RETURN               shift, and go to state 156
+    OPEN_BRACKET         shift, and go to state 39
+    OPEN_FLOWER_BRACKET  shift, and go to state 108
+    AND                  shift, and go to state 40
+    MULT                 shift, and go to state 41
+    ADD                  shift, and go to state 42
+    SUB                  shift, and go to state 43
+    NOT                  shift, and go to state 44
+    SEMI_COLON           shift, and go to state 158
+    IDENTIFIER           shift, and go to state 45
+    INTEGER_CONSTANT     shift, and go to state 46
+    CHAR_CONSTANT        shift, and go to state 47
+    STRING_LITERAL       shift, and go to state 48
+
+    primary_expression         go to state 49
+    postfix_expression         go to state 50
+    unary_expression           go to state 51
+    unary_operator             go to state 52
+    multiplicative_expression  go to state 53
+    additive_expression        go to state 54
+    relational_expression      go to state 55
+    equality_expression        go to state 56
+    logical_AND_expression     go to state 57
+    logical_OR_expression      go to state 58
+    conditional_expression     go to state 59
+    assignment_expression      go to state 80
+    expression                 go to state 159
+    statement                  go to state 241
+    compound_statement         go to state 163
+    expression_statement       go to state 166
+    selection_statement        go to state 167
+    iteration_statement        go to state 168
+    jump_statement             go to state 169
+
+
+State 241
+
+   76 iteration_statement: FOR OPEN_BRACKET expression_statement M expression_statement N M expression N CLOSE_BRACKET M statement •
+
+    $default  reduce using rule 76 (iteration_statement)

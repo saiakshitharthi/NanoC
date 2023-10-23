@@ -1,0 +1,18 @@
+Group 19:
+    Heemanth Kilaparthi (200101056)
+    Arthi Sai Akshith   (200101019)
+
+Commands to run the files:
+    make all        -   To test the program on A4_19.nc
+    make testcases  -   To test the program on all the testcases provided with this folder.
+                        Note that Testcase_2.nc should give the syntax error and the rest should pass.
+    make clean      -   To remove the compiled files.
+
+Errors Resolved :
+    A4_19.nc file contains all the errors resolved and it shouldn't give any syntax error.
+    testcase_not_working file contains the errors resolved and it should give syntax error according to nano C.
+
+Output :
+    Success/Error message after running the testcase.
+    y.output will be generated.
+    symbol_table.txt which contains the symbol table.

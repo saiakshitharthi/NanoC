@@ -1,0 +1,241 @@
+Success: Parsing Done
++---------------------------------------+
++---------------Global Symbol Table---------------+
+Name	Type	Initial value	size	Offset	nested table
+printInt	INT->INT	0	0	0	printInt
+readInt	INT*->INT	0	0	0	readInt
+printStr	CHAR*->INT	0	0	0	printStr
+swap	INT**INT*->VOID	0	0	0	swap
+readArray	INT->VOID	0	0	0	readArray
+printArray	INT->VOID	0	0	0	printArray
+bubbleSort	INT->VOID	0	0	0	bubbleSort
+arr	INT	0	80	0	null
+main	VOID->INT	0	0	80	main
++---------------Symbol Table of printInt---------------+
+Name	Type	Initial value	size	Offset	nested table
+x	INT	0	4	0	null
+t0	INT	0	4	4	null
++---------------Symbol Table of readInt---------------+
+Name	Type	Initial value	size	Offset	nested table
+n	INT*	0	4	0	null
+t1	INT	0	4	4	null
++---------------Symbol Table of printStr---------------+
+Name	Type	Initial value	size	Offset	nested table
+s	CHAR*	0	1	0	null
+t2	INT	0	4	1	null
++---------------Symbol Table of swap---------------+
+Name	Type	Initial value	size	Offset	nested table
+p	INT*	0	4	0	null
+q	INT*	0	4	4	null
+t3	INT*	0	4	8	null
+t	INT	0	4	12	null
+t4	INT*	0	4	16	null
++---------------Symbol Table of readArray---------------+
+Name	Type	Initial value	size	Offset	nested table
+size	INT	0	4	0	null
+i	INT	0	4	4	null
+t5	INT	0	4	8	null
+t6	INT	0	4	12	null
+t7	INT	0	4	16	null
+t8	CHAR	"Input next element\n"	20	20	null
+t9	INT	0	4	40	null
+t10	INT	0	4	44	null
+t11	INT	0	4	48	null
+t12	INT*	0	4	52	null
+t13	INT	0	4	56	null
++---------------Symbol Table of printArray---------------+
+Name	Type	Initial value	size	Offset	nested table
+size	INT	0	4	0	null
+i	INT	0	4	4	null
+t14	INT	0	4	8	null
+t15	INT	0	4	12	null
+t16	INT	0	4	16	null
+t17	INT	0	4	20	null
+t18	INT	0	4	24	null
+t19	INT	0	4	28	null
+t20	CHAR	" "	1	32	null
+t21	INT	0	4	33	null
+t22	CHAR	"\n"	2	37	null
+t23	INT	0	4	39	null
++---------------Symbol Table of bubbleSort---------------+
+Name	Type	Initial value	size	Offset	nested table
+n	INT	0	4	0	null
+i	INT	0	4	4	null
+j	INT	0	4	8	null
+t24	INT	0	4	12	null
+t25	INT	0	4	16	null
+t26	INT	0	4	20	null
+t27	INT	0	4	24	null
+t28	INT	0	4	28	null
+t29	INT	0	4	32	null
+t30	INT	0	4	36	null
+t31	INT	0	4	40	null
+t32	INT	0	4	44	null
+t33	INT	0	4	48	null
+t34	INT	0	4	52	null
+t35	INT	0	4	56	null
+t36	INT	0	4	60	null
+t37	INT	0	4	64	null
+t38	INT	0	4	68	null
+t39	INT	0	4	72	null
+t40	INT	0	4	76	null
+t41	INT	0	4	80	null
+t42	INT	0	4	84	null
+t43	INT*	0	4	88	null
+t44	INT	0	4	92	null
+t45	INT	0	4	96	null
+t46	INT	0	4	100	null
+t47	INT	0	4	104	null
+t48	INT*	0	4	108	null
+t49	VOID*	0	4	112	null
++---------------Symbol Table of main---------------+
+Name	Type	Initial value	size	Offset	nested table
+n	INT	0	4	0	null
+t50	CHAR	"Input array size: \n"	20	4	null
+t51	INT	0	4	24	null
+t52	INT*	0	4	28	null
+t53	INT	0	4	32	null
+t54	CHAR	"Input array elements: \n"	24	36	null
+t55	INT	0	4	60	null
+t56	VOID*	0	4	64	null
+t57	CHAR	"Input array: \n"	15	68	null
+t58	INT	0	4	83	null
+t59	VOID*	0	4	87	null
+t60	VOID*	0	4	91	null
+t61	CHAR	"Sorted array: \n"	16	95	null
+t62	INT	0	4	111	null
+t63	VOID*	0	4	115	null
+t64	INT	0	4	119	null
+
+  0) printInt : 
+  1) t0 = 0
+  2) return t0
+  3) readInt : 
+  4) t1 = 1
+  5) return t1
+  6) printStr : 
+  7) t2 = 2
+  8) return t2
+  9) swap : 
+ 10) t3 = *p
+ 11) t = t3
+ 12) t4 = *q
+ 13) *p = t4
+ 14) *q = t
+ 15) return
+ 16) readArray : 
+ 17) t5 = 0
+ 18) i = t5
+ 19) if i < size goto 26
+ 20) goto 35
+ 21) goto 35
+ 22) t6 = 1
+ 23) t7 = i + t6
+ 24) i = t7
+ 25) goto 19
+ 26) t8 = "Input next element\n"
+ 27) param t8
+ 28) t9 = call printStr, 1
+ 29) t10 = i
+ 30) t11 = arr[t10]
+ 31) t12 = &t11
+ 32) param t12
+ 33) t13 = call readInt, 1
+ 34) goto 22
+ 35) return
+ 36) printArray : 
+ 37) t14 = 0
+ 38) i = t14
+ 39) if i < size goto 46
+ 40) goto 54
+ 41) goto 54
+ 42) t15 = 1
+ 43) t16 = i + t15
+ 44) i = t16
+ 45) goto 39
+ 46) t17 = i
+ 47) t18 = arr[t17]
+ 48) param t18
+ 49) t19 = call printInt, 1
+ 50) t20 = " "
+ 51) param t20
+ 52) t21 = call printStr, 1
+ 53) goto 42
+ 54) t22 = "\n"
+ 55) param t22
+ 56) t23 = call printStr, 1
+ 57) return
+ 58) bubbleSort : 
+ 59) t24 = 0
+ 60) i = t24
+ 61) t25 = 1
+ 62) t26 = n - t25
+ 63) if i < t26 goto 70
+ 64) goto 105
+ 65) goto 105
+ 66) t27 = 1
+ 67) t28 = i + t27
+ 68) i = t28
+ 69) goto 61
+ 70) t29 = 0
+ 71) j = t29
+ 72) t30 = n - i
+ 73) t31 = 1
+ 74) t32 = t30 - t31
+ 75) if j < t32 goto 82
+ 76) goto 66
+ 77) goto 104
+ 78) t33 = 1
+ 79) t34 = j + t33
+ 80) j = t34
+ 81) goto 72
+ 82) t35 = j
+ 83) t36 = arr[t35]
+ 84) t37 = 1
+ 85) t38 = j + t37
+ 86) t39 = t38
+ 87) t40 = arr[t39]
+ 88) if t36 > t40 goto 91
+ 89) goto 78
+ 90) goto 103
+ 91) t41 = j
+ 92) t42 = arr[t41]
+ 93) t43 = &t42
+ 94) t44 = 1
+ 95) t45 = j + t44
+ 96) t46 = t45
+ 97) t47 = arr[t46]
+ 98) t48 = &t47
+ 99) param t43
+100) param t48
+101) t49 = call swap, 2
+102) goto (null)
+103) goto 78
+104) goto 66
+105) return
+106) main : 
+107) t50 = "Input array size: \n"
+108) param t50
+109) t51 = call printStr, 1
+110) t52 = &n
+111) param t52
+112) t53 = call readInt, 1
+113) t54 = "Input array elements: \n"
+114) param t54
+115) t55 = call printStr, 1
+116) param n
+117) t56 = call readArray, 1
+118) t57 = "Input array: \n"
+119) param t57
+120) t58 = call printStr, 1
+121) param n
+122) t59 = call printArray, 1
+123) param n
+124) t60 = call bubbleSort, 1
+125) t61 = "Sorted array: \n"
+126) param t61
+127) t62 = call printStr, 1
+128) param n
+129) t63 = call printArray, 1
+130) t64 = 0
+131) return t64

@@ -1,0 +1,18 @@
+Group 19:
+    Heemanth Kilaparthi (200101056)
+    Arthi Sai Akshith   (200101019)
+
+About Assignment
+    Required Explanations are specified in comments in A5_19_translator.h file which gives brief knowledge.
+    A5_19_translator.h contains the declarations for the data structures used. It is well commented to get a brief idea.
+    A5_19_translator.cpp contains the definitions for all the data structures used.
+
+Commands to run the files:
+    make all        -   To test the program on A4_19.nc which contains some example code.
+    make testcases  -   To test the program on all the testcases provided with this folder.
+    make clean      -   To remove the compiled files.
+
+
+Output :
+    Success/Error message after running the testcase.
+    Corresponding output file will be generated.

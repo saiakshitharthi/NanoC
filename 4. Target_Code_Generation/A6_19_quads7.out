@@ -1,0 +1,38 @@
+  0) printInt : 
+  1) t0 = 0
+  2) return t0
+  3) readInt : 
+  4) t1 = 1
+  5) return t1
+  6) printStr : 
+  7) t2 = 2
+  8) return t2
+  9) factorial : 
+ 10) t3 = 0
+ 11) if n == t3 goto 14
+ 12) goto 17
+ 13) goto 23
+ 14) t4 = 1
+ 15) return t4
+ 16) goto (null)
+ 17) t5 = 1
+ 18) t6 = n - t5
+ 19) param t6
+ 20) t7 = call factorial , 1
+ 21) t8 = n * t7
+ 22) return t8
+ 23) main : 
+ 24) t9 = 5
+ 25) n = t9
+ 26) param n
+ 27) t10 = call factorial , 1
+ 28) r = t10
+ 29) param n
+ 30) t11 = call printInt , 1
+ 31) t12 = "! = "
+ 32) param t12
+ 33) t13 = call printStr , 1
+ 34) param r
+ 35) t14 = call printInt , 1
+ 36) t15 = 0
+ 37) return t15

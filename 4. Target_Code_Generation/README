@@ -1,0 +1,26 @@
+200101019 Arthi Sai Akshith
+200101056 Heemanth Kilaparthi
+
+
+to run, please use make all command.
+
+To run a specific nasm command, use the command :
+
+
+bash run.sh file_name 
+
+Some Bonus parts, which are done: 
+
+    Implemented I/O.
+    
+Some good points;
+    I/0 is implemented in assembly language itself, to ensure fast execution.
+Design of memory Binding:
+
+We have used stack for storing all local variables, while actively maintaing the records in the stack, when the function ends, We am making sure that the space allocated to the stack is cleared.
+
+Global variables are declared in data section while global arrays are declared in bss section.{As initialization not required here.}
+
+We maintained base pointer in such a way that memory above base pointer contains arguments for the function, return address, while above the base pointer, all the local Variables and other temporary variables are being stored.
+
+We have used map datastructure to efficiently retrieve the location of the respective local or global variable. 

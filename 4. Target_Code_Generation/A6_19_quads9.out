@@ -1,0 +1,103 @@
+  0) printInt : 
+  1) t0 = 0
+  2) return t0
+  3) readInt : 
+  4) t1 = 1
+  5) return t1
+  6) printStr : 
+  7) t2 = 2
+  8) return t2
+  9) binarySearch : 
+ 10) if r >= l goto 13
+ 11) goto 46
+ 12) goto 46
+ 13) t3 = r - l
+ 14) t4 = 2
+ 15) t5 = t3 / t4
+ 16) t6 = l + t5
+ 17) mid = t6
+ 18) t7 = mid
+ 19) t8 = arr[t7]
+ 20) if t8 == x goto 23
+ 21) goto 25
+ 22) goto 25
+ 23) return mid
+ 24) goto (null)
+ 25) t9 = mid
+ 26) t10 = arr[t9]
+ 27) if t10 > x goto 30
+ 28) goto 38
+ 29) goto 38
+ 30) t11 = 1
+ 31) t12 = mid - t11
+ 32) param l
+ 33) param t12
+ 34) param x
+ 35) t13 = call binarySearch , 3
+ 36) return t13
+ 37) goto (null)
+ 38) t14 = 1
+ 39) t15 = mid + t14
+ 40) param t15
+ 41) param r
+ 42) param x
+ 43) t16 = call binarySearch , 3
+ 44) return t16
+ 45) goto (null)
+ 46) t17 = 1
+ 47) t18 = -t17
+ 48) return t18
+ 49) main : 
+ 50) t19 = 5
+ 51) n = t19
+ 52) t20 = 0
+ 53) t21 = t20
+ 54) t22 = arr[t21]
+ 55) t23 = 2
+ 56) arr[t21] = t23
+ 57) t24 = 1
+ 58) t25 = t24
+ 59) t26 = arr[t25]
+ 60) t27 = 3
+ 61) arr[t25] = t27
+ 62) t28 = 2
+ 63) t29 = t28
+ 64) t30 = arr[t29]
+ 65) t31 = 4
+ 66) arr[t29] = t31
+ 67) t32 = 3
+ 68) t33 = t32
+ 69) t34 = arr[t33]
+ 70) t35 = 10
+ 71) arr[t33] = t35
+ 72) t36 = 4
+ 73) t37 = t36
+ 74) t38 = arr[t37]
+ 75) t39 = 40
+ 76) arr[t37] = t39
+ 77) t40 = 10
+ 78) x = t40
+ 79) t41 = 0
+ 80) t42 = 1
+ 81) t43 = n - t42
+ 82) param t41
+ 83) param t43
+ 84) param x
+ 85) t44 = call binarySearch , 3
+ 86) result = t44
+ 87) t45 = 1
+ 88) t46 = -t45
+ 89) if result == t46 goto 92
+ 90) goto 96
+ 91) goto 101
+ 92) t47 = "Element is not present in array"
+ 93) param t47
+ 94) t48 = call printStr , 1
+ 95) goto 101
+ 96) t49 = "Element is present at index "
+ 97) param t49
+ 98) t50 = call printStr , 1
+ 99) param result
+100) t51 = call printInt , 1
+101) t52 = 0
+102) return t52

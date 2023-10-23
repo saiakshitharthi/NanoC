@@ -1,0 +1,38 @@
+  0) printInt : 
+  1) t0 = 0
+  2) return t0
+  3) readInt : 
+  4) t1 = 1
+  5) return t1
+  6) printStr : 
+  7) t2 = 2
+  8) return t2
+  9) main : 
+ 10) t3 = 0
+ 11) i = t3
+ 12) t4 = 1
+ 13) r = t4
+ 14) t5 = &n
+ 15) param t5
+ 16) t6 = call readInt , 1
+ 17) t7 = 1
+ 18) i = t7
+ 19) if i <= n goto 26
+ 20) goto 29
+ 21) goto 29
+ 22) t8 = 1
+ 23) t9 = i + t8
+ 24) i = t9
+ 25) goto 19
+ 26) t10 = r * i
+ 27) r = t10
+ 28) goto 22
+ 29) param n
+ 30) t11 = call printInt , 1
+ 31) t12 = "! = "
+ 32) param t12
+ 33) t13 = call printStr , 1
+ 34) param r
+ 35) t14 = call printInt , 1
+ 36) t15 = 0
+ 37) return t15
